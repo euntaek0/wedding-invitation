@@ -1,18 +1,5 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
-
-const notoSansKr = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-sans',
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-serif',
-})
 
 const metadataBase = (() => {
   const url = process.env.NEXT_PUBLIC_SITE_URL
@@ -62,9 +49,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKr.variable} ${cormorant.variable}`}>
-        {children}
-      </body>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@noonnu/eulyoo1945-regular@0.1.0/index.min.css"
+        />
+      </head>
+      <body>{children}</body>
     </html>
   )
 }
