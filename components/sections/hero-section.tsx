@@ -20,13 +20,13 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
   const [heroImage, ...secondaryImages] = featuredPhotos
 
   return (
-    <Reveal className="px-4 pb-8 pt-6 sm:px-6">
-      <section id="hero" className="space-y-5">
+    <Reveal className="px-5 pb-12 pt-10 sm:px-8 sm:pb-14">
+      <section id="hero" className="space-y-7">
         <p className="text-center text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
           {language === 'ko' ? 'Wedding Invitation' : 'Wedding Invitation'}
         </p>
 
-        <div className="overflow-hidden rounded-[22px] border border-[var(--line)] bg-[var(--surface-soft)]">
+        <div className="overflow-hidden">
           <Image
             src={`/imgs/${heroImage.file}`}
             alt="신랑 신부 웨딩 사진"
@@ -38,19 +38,19 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
           />
         </div>
 
-        <div className="space-y-2 text-center">
+        <div className="space-y-3 text-center">
           <h1 className="section-title text-[2rem] leading-[1.18] text-[var(--foreground)]">
             {weddingContent.names[language]}
           </h1>
-          <p className="text-sm text-[var(--muted)]">{copy.title}</p>
-          <p className="text-sm text-[var(--muted)]">{copy.subtitle}</p>
+          <p className="text-base text-[var(--muted)]">{copy.title}</p>
+          <p className="text-base leading-relaxed text-[var(--muted)]">{copy.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-2">
           {secondaryImages.slice(0, 2).map((photo) => (
             <div
               key={photo.id}
-              className="overflow-hidden rounded-2xl border border-[var(--line)] bg-white"
+              className="overflow-hidden"
             >
               <Image
                 src={`/imgs/${photo.file}`}
@@ -64,9 +64,9 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-[var(--line)] bg-white px-4 py-4 text-center">
-          <p className="text-sm font-medium text-[var(--foreground)]">{copy.dateLine}</p>
-          <p className="mt-1 text-sm text-[var(--muted)]">{copy.venueLine}</p>
+        <div className="border-y border-[var(--line)] px-4 py-5 text-center">
+          <p className="text-base font-medium text-[var(--foreground)]">{copy.dateLine}</p>
+          <p className="mt-2 text-base text-[var(--muted)]">{copy.venueLine}</p>
         </div>
       </section>
     </Reveal>

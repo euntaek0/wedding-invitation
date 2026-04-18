@@ -34,9 +34,9 @@ export function WeddingInvitationPage() {
   }
 
   return (
-    <main className="min-h-screen px-3 py-4 sm:px-5 sm:py-8">
-      <div className="mx-auto w-full max-w-[460px] overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--surface)] shadow-[var(--shadow-soft)]">
-        <div className="flex justify-end px-4 pt-4 sm:px-6 sm:pt-5">
+    <main className="min-h-screen px-4 py-8 sm:px-8 sm:py-12">
+      <div className="mx-auto w-full max-w-[460px] border border-[var(--line)] bg-[var(--surface)]">
+        <div className="flex justify-end px-5 pt-6 sm:px-8 sm:pt-7">
           <button
             type="button"
             onClick={toggleLanguage}

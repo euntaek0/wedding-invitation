@@ -7,7 +7,7 @@ Mobile-first premium wedding invitation for **구은성 · 김예은**, built wi
 - Korean / English language toggle (default: Korean, persisted in localStorage)
 - Romantic, pastel, photo-centered mobile layout with subtle reveal animation
 - Wedding info sections: hero, invitation message, details, calendar highlight, venue/map UI
-- D-day countdown for `2026-06-06 12:00 (KST)`
+- D-day countdown for `2026-06-06 12:00`
 - Actions: copy address, Naver map, Kakao map
 - RSVP form with server validation and Google Apps Script webhook integration point
 - Guest photo upload with provider abstraction (mock / S3 / Supabase / Firebase)
@@ -94,7 +94,7 @@ Minimal Apps Script example:
 
 ```javascript
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
   const data = JSON.parse(e.postData.contents);
 
   sheet.appendRow([
@@ -105,12 +105,10 @@ function doPost(e) {
     data.attendance,
     data.attendeeCount,
     data.meal,
-    data.message || ''
+    data.message || "",
   ]);
 
-  return ContentService
-    .createTextOutput(JSON.stringify({ ok: true }))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
 }
 ```
 

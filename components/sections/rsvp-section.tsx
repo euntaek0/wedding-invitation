@@ -122,17 +122,17 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
   }
 
   return (
-    <Reveal className="border-t border-[var(--line)] px-4 py-8 sm:px-6">
-      <section id="rsvp" className="space-y-4">
-        <h2 className="section-title text-center text-[1.55rem] text-[var(--foreground)]">
+    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="rsvp" className="space-y-6">
+        <h2 className="section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
-        <p className="text-center text-sm text-[var(--muted)]">{copy.description}</p>
+        <p className="text-center text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
 
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="w-full rounded-xl border border-[var(--line)] bg-white px-4 py-3 text-sm font-medium text-[var(--foreground)]"
+          className="w-full rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
         >
           {copy.openModal}
         </button>

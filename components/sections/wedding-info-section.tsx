@@ -17,54 +17,60 @@ interface WeddingInfoSectionProps {
 }
 
 export function WeddingInfoSection({ language, copy }: WeddingInfoSectionProps) {
+  const dateText = language === 'ko' ? weddingContent.date.koFull : weddingContent.date.enFull
+  const relationTokens = ['의 장남', '의 딸']
+  const labelClass =
+    language === 'ko'
+      ? 'text-sm tracking-[0.06em] text-[var(--muted)]'
+      : 'text-sm uppercase tracking-[0.12em] text-[var(--muted)]'
+
+  const renderParentSentence = (sentence: string) => {
+    if (language !== 'ko') {
+      return sentence
+    }
+
+    const parts = sentence.split(/(의 장남|의 딸)/g)
+
+    return parts.map((part, index) =>
+      relationTokens.includes(part) ? (
+        <span key={`${part}-${index}`} className="text-[#8f8385]">
+          {part}
+        </span>
+      ) : (
+        <span key={`${part}-${index}`}>{part}</span>
+      ),
+    )
+  }
+
   return (
-    <Reveal className="border-t border-[var(--line)] px-4 py-8 sm:px-6">
-      <section id="information" className="space-y-4">
-        <h2 className="section-title text-center text-[1.55rem] text-[var(--foreground)]">
+    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="information" className="space-y-7">
+        <h2 className="section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
 
-        <div className="grid grid-cols-1 gap-3">
-          <article className="rounded-2xl border border-[var(--line)] bg-[var(--surface-soft)] p-4">
-            <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
-              {copy.groomLabel}
+        <div className="space-y-9 text-center">
+          <div className="space-y-3">
+            <p className={labelClass}>{copy.parentHeading}</p>
+            <p className="text-base leading-relaxed text-[var(--foreground)]">
+              {renderParentSentence(weddingContent.parents[language].groom)}
             </p>
-            <p className="mt-1 text-base font-medium text-[var(--foreground)]">
-              {language === 'ko' ? '구은성' : 'Gu Eunseong'}
+            <p className="text-base leading-relaxed text-[var(--foreground)]">
+              {renderParentSentence(weddingContent.parents[language].bride)}
             </p>
-            <p className="mt-2 text-sm text-[var(--muted)]">
-              {weddingContent.parents[language].groom}
-            </p>
-          </article>
+          </div>
 
-          <article className="rounded-2xl border border-[var(--line)] bg-[var(--surface-soft)] p-4">
-            <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
-              {copy.brideLabel}
-            </p>
-            <p className="mt-1 text-base font-medium text-[var(--foreground)]">
-              {language === 'ko' ? '김예은' : 'Kim Yeeun'}
-            </p>
-            <p className="mt-2 text-sm text-[var(--muted)]">
-              {weddingContent.parents[language].bride}
-            </p>
-          </article>
-
-          <article className="rounded-2xl border border-[var(--line)] bg-white p-4">
-            <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)]">{copy.dateHeading}</p>
-            <p className="mt-2 text-sm font-medium text-[var(--foreground)]">
-              {language === 'ko'
-                ? weddingContent.date.koFull
-                : weddingContent.date.enFull}
-            </p>
-          </article>
-
-          <article className="rounded-2xl border border-[var(--line)] bg-white p-4">
-            <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)]">{copy.venueHeading}</p>
-            <p className="mt-2 text-sm font-medium text-[var(--foreground)]">
+          <div className="space-y-3 border-y border-[var(--line)] py-8">
+            <p className={labelClass}>{copy.dateHeading}</p>
+            <p className="text-base leading-relaxed text-[var(--foreground)]">{dateText}</p>
+            <p className={`pt-2 ${labelClass}`}>{copy.venueHeading}</p>
+            <p className="text-base leading-relaxed text-[var(--foreground)]">
               {weddingContent.venue.name}
             </p>
-            <p className="mt-1 text-sm text-[var(--muted)]">{weddingContent.venue.address}</p>
-          </article>
+            <p className="text-sm leading-relaxed text-[#8e8284]">
+              {weddingContent.venue.address}
+            </p>
+          </div>
         </div>
       </section>
     </Reveal>

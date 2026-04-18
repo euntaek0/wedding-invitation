@@ -37,9 +37,9 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
   }
 
   return (
-    <Reveal className="border-t border-[var(--line)] px-4 py-8 sm:px-6">
-      <section id="venue" className="space-y-4">
-        <h2 className="section-title text-center text-[1.55rem] text-[var(--foreground)]">
+    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="venue" className="space-y-6">
+        <h2 className="section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
 
@@ -60,13 +60,12 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
             </p>
           </div>
 
-          <div className="space-y-3 p-4">
-            <p className="text-sm font-medium text-[var(--foreground)]">{copy.subheading}</p>
-            <p className="text-sm text-[var(--muted)]">
+          <div className="space-y-4 p-6">
+            <p className="text-base font-medium text-[var(--foreground)]">{copy.subheading}</p>
+            <p className="text-base text-[var(--muted)]">
               <span className="font-medium text-[var(--foreground)]">{copy.addressLabel}</span>
-              <br />
-              {siteConfig.venueAddress}
             </p>
+            <p className="text-xs leading-relaxed text-[#8e8284]">{siteConfig.venueAddress}</p>
 
             <div className="grid grid-cols-3 gap-2">
               <a

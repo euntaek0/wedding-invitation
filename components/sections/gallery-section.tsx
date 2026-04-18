@@ -15,12 +15,12 @@ interface GallerySectionProps {
 
 export function GallerySection({ language, copy }: GallerySectionProps) {
   return (
-    <Reveal className="border-t border-[var(--line)] px-4 py-8 sm:px-6">
-      <section id="gallery" className="space-y-6">
-        <h2 className="section-title text-center text-[1.55rem] text-[var(--foreground)]">
+    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="gallery" className="space-y-10">
+        <h2 className="section-title wedding-script-title text-center text-[1.9rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
-        <p className="text-center text-sm text-[var(--muted)]">{copy.description}</p>
+        <p className="text-center text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
 
         {moodGallerySections.map((group) => {
           const cover = photoAssets.find((photo) => photo.id === group.coverId)
@@ -34,7 +34,7 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
 
           return (
             <article key={group.id} className="space-y-3">
-              <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-white">
+              <div className="overflow-hidden">
                 <Image
                   src={`/imgs/${cover.file}`}
                   alt="대표 웨딩 사진"
@@ -59,7 +59,7 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
                   {photos.map((photo) => (
                     <div
                       key={photo.id}
-                      className="w-[138px] flex-none overflow-hidden rounded-xl border border-[var(--line)] bg-white"
+                      className="w-[138px] flex-none overflow-hidden"
                     >
                       <Image
                         src={`/imgs/${photo.file}`}

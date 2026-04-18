@@ -32,7 +32,7 @@ body {
 body {
   font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
     serif;
-  line-height: 1.55;
+  line-height: 1.68;
 }
 
 a {
@@ -48,6 +48,13 @@ img {
 .section-title {
   font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
     serif;
+  letter-spacing: 0.01em;
+}
+
+.wedding-script-title {
+  font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
+    serif;
+  font-weight: 500;
   letter-spacing: 0.01em;
 }
 
