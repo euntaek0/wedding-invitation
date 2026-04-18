@@ -305,17 +305,17 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
   }
 
   return (
-    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
-      <section id="guest-upload" className="space-y-6">
-        <h2 className="section-title text-center text-[1.8rem] text-[var(--foreground)]">
+    <Reveal className="wi-section wi-section-upload border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="guest-upload" className="wi-upload space-y-6">
+        <h2 className="wi-title wi-upload-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
-        <p className="text-center text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
+        <p className="wi-upload-description text-center text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
 
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="w-full rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
+          className="wi-upload-open-button w-full rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
         >
           {copy.openModal}
         </button>
@@ -327,8 +327,8 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
         title={copy.heading}
         closeLabel={copy.closeModal}
       >
-        <div className="space-y-3">
-          <label className="block text-sm text-[var(--muted)]">
+        <div className="wi-upload-form space-y-3">
+          <label className="wi-upload-field block text-sm text-[var(--muted)]">
             {copy.uploaderName}
             <input
               value={uploaderName}
@@ -338,7 +338,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
             />
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-upload-field block text-sm text-[var(--muted)]">
             {copy.fileInput}
             <input
               type="file"
@@ -352,12 +352,12 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
             />
           </label>
 
-          <p className="text-xs text-[var(--muted)]">{copy.helper}</p>
+          <p className="wi-upload-helper text-xs text-[var(--muted)]">{copy.helper}</p>
 
           {items.length > 0 && (
-            <ul className="space-y-2">
+            <ul className="wi-upload-list space-y-2">
               {items.map((item) => (
-                <li key={item.id} className="rounded-xl border border-[var(--line)] p-2">
+                <li key={item.id} className="wi-upload-item rounded-xl border border-[var(--line)] p-2">
                   <div className="flex gap-3">
                     <div className="h-16 w-16 overflow-hidden bg-[var(--surface-soft)]">
                       <img
@@ -375,9 +375,9 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
                         {(item.file.size / 1024 / 1024).toFixed(2)}MB
                       </p>
 
-                      <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-[var(--surface-soft)]">
+                      <div className="wi-upload-progress-track mt-1 h-2 w-full overflow-hidden rounded-full bg-[var(--surface-soft)]">
                         <div
-                          className={`h-full rounded-full ${
+                          className={`wi-upload-progress-fill h-full rounded-full ${
                             item.status === 'error'
                               ? 'bg-rose-400'
                               : item.status === 'success'
@@ -389,7 +389,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
                       </div>
 
                       {item.error && (
-                        <p className="mt-1 text-xs text-rose-500">{item.error}</p>
+                        <p className="wi-upload-item-error mt-1 text-xs text-rose-500">{item.error}</p>
                       )}
                     </div>
                   </div>
@@ -399,7 +399,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
                       <button
                         type="button"
                         onClick={() => startUpload([item.id])}
-                        className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--foreground)]"
+                        className="wi-upload-retry rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--foreground)]"
                       >
                         {copy.retry}
                       </button>
@@ -408,7 +408,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
-                      className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--foreground)]"
+                      className="wi-upload-remove rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--foreground)]"
                     >
                       {copy.remove}
                     </button>
@@ -420,7 +420,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
 
           {feedback && (
             <p
-              className={`text-sm ${
+              className={`wi-upload-feedback text-sm ${
                 feedback.type === 'success' ? 'text-emerald-600' : 'text-rose-500'
               }`}
             >
@@ -432,7 +432,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
             type="button"
             disabled={!hasUploadable || isUploading}
             onClick={() => startUpload()}
-            className="w-full rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="wi-upload-submit w-full rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isUploading ? copy.uploading : copy.submit}
           </button>

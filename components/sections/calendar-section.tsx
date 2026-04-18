@@ -38,18 +38,18 @@ export function CalendarSection({ language, copy }: CalendarSectionProps) {
     : countdown;
 
   return (
-    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
-      <section id="calendar" className="space-y-6">
-        <h2 className="section-title wedding-script-title text-center text-[1.8rem] text-[var(--foreground)]">
+    <Reveal className="wi-section wi-section-calendar border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="calendar" className="wi-calendar space-y-6">
+        <h2 className="wi-title wi-calendar-title section-title wedding-script-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
 
-        <div className="rounded-2xl border border-[var(--line)] bg-white p-6">
-          <p className="mb-5 text-center text-base text-[var(--muted)]">{copy.caption}</p>
+        <div className="wi-calendar-card rounded-2xl border border-[var(--line)] bg-white p-6">
+          <p className="wi-calendar-caption mb-5 text-center text-base text-[var(--muted)]">{copy.caption}</p>
 
-          <div className="grid grid-cols-7 gap-1.5 text-center text-sm text-[var(--muted)]">
+          <div className="wi-calendar-grid grid grid-cols-7 gap-1.5 text-center text-sm text-[var(--muted)]">
             {dayLabels[language].map((day) => (
-              <span key={day} className="py-1.5">
+              <span key={day} className="wi-calendar-weekday py-1.5">
                 {day}
               </span>
             ))}
@@ -60,7 +60,7 @@ export function CalendarSection({ language, copy }: CalendarSectionProps) {
               return (
                 <div
                   key={`${day}-${idx}`}
-                  className={`rounded-lg py-2 text-sm ${
+                  className={`wi-calendar-day rounded-lg py-2 text-sm ${
                     isWeddingDay
                       ? "bg-[var(--accent-soft)] font-semibold text-[var(--accent-strong)]"
                       : "text-[var(--foreground)]"
@@ -72,7 +72,7 @@ export function CalendarSection({ language, copy }: CalendarSectionProps) {
             })}
           </div>
 
-          <p className="mt-5 text-center text-base font-medium text-[var(--accent-strong)]">{countdownText}</p>
+          <p className="wi-calendar-countdown mt-5 text-center text-base font-medium text-[var(--accent-strong)]">{countdownText}</p>
         </div>
       </section>
     </Reveal>

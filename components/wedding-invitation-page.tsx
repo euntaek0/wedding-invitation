@@ -1,51 +1,50 @@
-'use client'
+"use client";
 
-import { useEffect, useMemo, useState } from 'react'
-import { invitationCopy } from '@/content/invitation'
-import { CalendarSection } from '@/components/sections/calendar-section'
-import { FooterSection } from '@/components/sections/footer-section'
-import { GallerySection } from '@/components/sections/gallery-section'
-import { GuestUploadSection } from '@/components/sections/guest-upload-section'
-import { HeroSection } from '@/components/sections/hero-section'
-import { InvitationSection } from '@/components/sections/invitation-section'
-import { RsvpSection } from '@/components/sections/rsvp-section'
-import { VenueSection } from '@/components/sections/venue-section'
-import { WeddingInfoSection } from '@/components/sections/wedding-info-section'
-import type { Language } from '@/types/language'
+import { useEffect, useMemo, useState } from "react";
+import { invitationCopy } from "@/content/invitation";
+import { CalendarSection } from "@/components/sections/calendar-section";
+import { FooterSection } from "@/components/sections/footer-section";
+import { GallerySection } from "@/components/sections/gallery-section";
+import { GuestUploadSection } from "@/components/sections/guest-upload-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { InvitationSection } from "@/components/sections/invitation-section";
+import { RsvpSection } from "@/components/sections/rsvp-section";
+import { VenueSection } from "@/components/sections/venue-section";
+import { WeddingInfoSection } from "@/components/sections/wedding-info-section";
+import type { Language } from "@/types/language";
 
-const languageStorageKey = 'wedding-invitation-language'
+const languageStorageKey = "wedding-invitation-language";
 
 export function WeddingInvitationPage() {
-  const [language, setLanguage] = useState<Language>('ko')
+  const [language, setLanguage] = useState<Language>("ko");
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(languageStorageKey)
-    if (saved === 'ko' || saved === 'en') {
-      setLanguage(saved)
+    const saved = window.localStorage.getItem(languageStorageKey);
+    if (saved === "ko" || saved === "en") {
+      setLanguage(saved);
     }
-  }, [])
+  }, []);
 
-  const copy = useMemo(() => invitationCopy[language], [language])
+  const copy = useMemo(() => invitationCopy[language], [language]);
 
   const toggleLanguage = () => {
-    const nextLanguage: Language = language === 'ko' ? 'en' : 'ko'
-    setLanguage(nextLanguage)
-    window.localStorage.setItem(languageStorageKey, nextLanguage)
-  }
+    const nextLanguage: Language = language === "ko" ? "en" : "ko";
+    setLanguage(nextLanguage);
+    window.localStorage.setItem(languageStorageKey, nextLanguage);
+  };
 
   return (
-    <main className="min-h-screen px-4 py-8 sm:px-8 sm:py-12">
-      <div className="mx-auto w-full max-w-[460px] border border-[var(--line)] bg-[var(--surface)]">
-        <div className="flex justify-end px-5 pt-6 sm:px-8 sm:pt-7">
+    <main className="wi-page min-h-screen py-0">
+        {/* <div className="wi-language-bar flex justify-end px-5 pt-6 sm:px-8 sm:pt-7">
           <button
             type="button"
             onClick={toggleLanguage}
             aria-label={`Toggle language (${language})`}
-            className="text-xs font-medium text-[#9f9496] transition hover:text-[#837779]"
+            className="wi-language-toggle text-xs font-medium text-[#9f9496] transition hover:text-[#837779]"
           >
             {copy.nav.language}
           </button>
-        </div>
+        </div> */}
 
         <HeroSection language={language} copy={copy.hero} />
         <InvitationSection copy={copy.invitation} />
@@ -56,7 +55,6 @@ export function WeddingInvitationPage() {
         <GallerySection language={language} copy={copy.gallery} />
         <GuestUploadSection copy={copy.upload} />
         <FooterSection copy={copy.footer} />
-      </div>
     </main>
-  )
+  );
 }

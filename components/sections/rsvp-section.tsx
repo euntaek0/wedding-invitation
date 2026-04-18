@@ -122,17 +122,17 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
   }
 
   return (
-    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
-      <section id="rsvp" className="space-y-6">
-        <h2 className="section-title text-center text-[1.8rem] text-[var(--foreground)]">
+    <Reveal className="wi-section wi-section-rsvp border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="rsvp" className="wi-rsvp space-y-6">
+        <h2 className="wi-title wi-rsvp-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
         </h2>
-        <p className="text-center text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
+        <p className="wi-rsvp-description mx-auto max-w-[300px] text-center text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
 
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="w-full rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
+          className="wi-rsvp-open-button mx-auto inline-flex min-w-[220px] justify-center rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
         >
           {copy.openModal}
         </button>
@@ -144,8 +144,8 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
         title={copy.heading}
         closeLabel={copy.closeModal}
       >
-        <form onSubmit={onSubmit} className="space-y-3">
-          <label className="block text-sm text-[var(--muted)]">
+        <form onSubmit={onSubmit} className="wi-rsvp-form space-y-3">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.name}
             <input
               value={values.name}
@@ -156,7 +156,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
             />
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.phone}
             <input
               value={values.phone}
@@ -167,7 +167,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
             />
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.side}
             <select
               value={values.side}
@@ -179,7 +179,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
             </select>
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.attendance}
             <select
               value={values.attendance}
@@ -191,7 +191,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
             </select>
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.attendeeCount}
             <input
               type="number"
@@ -206,7 +206,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
             />
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.meal}
             <select
               value={values.meal}
@@ -218,7 +218,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
             </select>
           </label>
 
-          <label className="block text-sm text-[var(--muted)]">
+          <label className="wi-rsvp-field block text-sm text-[var(--muted)]">
             {copy.message}
             <textarea
               value={values.message}
@@ -230,7 +230,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
 
           {feedback && (
             <p
-              className={`text-sm ${
+              className={`wi-rsvp-feedback text-sm ${
                 feedback.type === 'success' ? 'text-emerald-600' : 'text-rose-500'
               }`}
             >
@@ -241,7 +241,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
           <button
             type="submit"
             disabled={!canSubmit || isSubmitting}
-            className="w-full rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="wi-rsvp-submit w-full rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting ? copy.submitting : copy.submit}
           </button>

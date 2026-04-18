@@ -10,14 +10,38 @@ interface InvitationSectionProps {
 }
 
 export function InvitationSection({ copy }: InvitationSectionProps) {
+  const renderLine = (line: string, idx: number) => {
+    const segments = line.split(/(사랑|축복)/g)
+
+    return (
+      <p key={`${line}-${idx}`} className="wi-invitation-line">
+        {segments.map((segment, segmentIdx) =>
+          segment === '사랑' || segment === '축복' ? (
+            <span key={`${segment}-${segmentIdx}`} className="text-[var(--accent-strong)]">
+              {segment}
+            </span>
+          ) : (
+            <span key={`${segment}-${segmentIdx}`}>{segment}</span>
+          ),
+        )}
+      </p>
+    )
+  }
+
   return (
-    <Reveal className="border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
-      <section id="invitation" className="space-y-7 text-center">
-        <h2 className="section-title text-[1.85rem] text-[var(--foreground)]">{copy.heading}</h2>
-        <div className="space-y-5 text-base leading-8 text-[var(--muted)]">
-          {copy.body.map((line, idx) => (
-            <p key={`${line}-${idx}`}>{line}</p>
-          ))}
+    <Reveal className="wi-section wi-section-invitation border-t border-[var(--line)] px-7 py-14 sm:px-11 sm:py-16">
+      <section id="invitation" className="wi-invitation mx-auto max-w-[340px] space-y-9 text-center">
+        <div className="wi-invitation-header space-y-3">
+          <p className="wi-invitation-badge text-[0.9rem] tracking-[0.3em] text-[#9c8f91]">
+            INVITATION
+          </p>
+          <h2 className="wi-title wi-invitation-title section-title text-[1.55rem] text-[#87797b]">
+            {copy.heading}
+          </h2>
+        </div>
+
+        <div className="wi-invitation-body space-y-6 text-[0.96rem] leading-[1.95] text-[#554b4c]">
+          {copy.body.map((line, idx) => renderLine(line, idx))}
         </div>
       </section>
     </Reveal>

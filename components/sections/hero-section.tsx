@@ -1,74 +1,70 @@
-import Image from 'next/image'
-import { Reveal } from '@/components/ui/reveal'
-import { weddingContent } from '@/content/invitation'
-import { featuredPhotos } from '@/lib/photos'
-import type { Language } from '@/types/language'
+import Image from "next/image";
+import { Reveal } from "@/components/ui/reveal";
+import { weddingContent } from "@/content/invitation";
+import type { Language } from "@/types/language";
 
 type HeroCopy = {
-  title: string
-  subtitle: string
-  dateLine: string
-  venueLine: string
-}
+  title: string;
+  subtitle: string;
+  dateLine: string;
+  venueLine: string;
+};
 
 interface HeroSectionProps {
-  language: Language
-  copy: HeroCopy
+  language: Language;
+  copy: HeroCopy;
 }
 
 export function HeroSection({ language, copy }: HeroSectionProps) {
-  const [heroImage, ...secondaryImages] = featuredPhotos
+  const eventDate = new Date(weddingContent.date.iso);
+  const yy = String(eventDate.getFullYear()).slice(2);
+  const mm = String(eventDate.getMonth() + 1).padStart(2, "0");
+  const dd = String(eventDate.getDate()).padStart(2, "0");
+  const weekday = language === "ko" ? "SATURDAY" : "SATURDAY";
+  const [leftName, rightName] = weddingContent.names[language].split("|").map((part) => part.trim());
 
   return (
-    <Reveal className="px-5 pb-12 pt-10 sm:px-8 sm:pb-14">
-      <section id="hero" className="space-y-7">
-        <p className="text-center text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-          {language === 'ko' ? 'Wedding Invitation' : 'Wedding Invitation'}
-        </p>
+    <Reveal className="wi-section wi-section-hero px-5 pb-18 pt-16 sm:px-8 sm:pb-20 sm:pt-20">
+      <section id="hero" className="wi-hero space-y-10">
+        <div className="wi-hero-date-block space-y-1 text-center pt-3">
+          <p className="wi-hero-date-digits section-title text-[2.2rem] leading-none text-[#544a4b]">
+            <span className="inline-flex items-center justify-center gap-3">
+              <span>{yy}</span>
+              <span className="wi-hero-date-separator text-[1.25rem] text-[#b8abac]">|</span>
+              <span>{mm}</span>
+              <span className="wi-hero-date-separator text-[1.25rem] text-[#b8abac]">|</span>
+              <span>{dd}</span>
+            </span>
+          </p>
+          <p className="wi-hero-date-weekday text-sm tracking-[0.24em] text-[#7f7476]">{weekday}</p>
+        </div>
 
-        <div className="overflow-hidden">
+        <div className="wi-hero-main-photo my-7 aspect-[1/1.06] overflow-hidden border border-[var(--line)] bg-[var(--surface-soft)]">
           <Image
-            src={`/imgs/${heroImage.file}`}
+            src="/imgs/YJ_00859.jpg"
             alt="신랑 신부 웨딩 사진"
-            width={heroImage.width}
-            height={heroImage.height}
+            width={3000}
+            height={4000}
             priority
-            className="h-auto w-full object-cover"
+            className="h-full w-full object-cover object-[50%_24%]"
             sizes="(max-width: 768px) 100vw, 460px"
           />
         </div>
 
-        <div className="space-y-3 text-center">
-          <h1 className="section-title text-[2rem] leading-[1.18] text-[var(--foreground)]">
-            {weddingContent.names[language]}
+        <div className="wi-hero-copy space-y-4 text-center">
+          <h1 className="wi-hero-names section-title py-4 text-[1.25rem] leading-[1.24] text-[var(--foreground)]">
+            <span className="inline-flex items-center justify-center gap-4">
+              <span className="wi-hero-name-left">{leftName || weddingContent.names[language]}</span>
+              {rightName ? <span className="wi-hero-name-divider text-[var(--muted)]">|</span> : null}
+              {rightName ? <span className="wi-hero-name-right">{rightName}</span> : null}
+            </span>
           </h1>
-          <p className="text-base text-[var(--muted)]">{copy.title}</p>
-          <p className="text-base leading-relaxed text-[var(--muted)]">{copy.subtitle}</p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-2">
-          {secondaryImages.slice(0, 2).map((photo) => (
-            <div
-              key={photo.id}
-              className="overflow-hidden"
-            >
-              <Image
-                src={`/imgs/${photo.file}`}
-                alt="웨딩 스냅 컷"
-                width={photo.width}
-                height={photo.height}
-                className="h-full w-full object-cover"
-                sizes="(max-width: 768px) 50vw, 220px"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="border-y border-[var(--line)] px-4 py-5 text-center">
-          <p className="text-base font-medium text-[var(--foreground)]">{copy.dateLine}</p>
-          <p className="mt-2 text-base text-[var(--muted)]">{copy.venueLine}</p>
+          <div className="wi-hero-meta space-y-3">
+            <p className="wi-hero-date text-base font-medium text-[var(--foreground)]">{copy.dateLine}</p>
+            <p className="wi-hero-venue text-sm text-[var(--muted)]">{copy.venueLine}</p>
+          </div>
         </div>
       </section>
     </Reveal>
-  )
+  );
 }

@@ -2,8 +2,8 @@ import type { Language } from "@/types/language";
 
 export const weddingContent = {
   names: {
-    ko: "구은성 · 김예은",
-    en: "Gu Eunseong · Kim Yeeun",
+    ko: "구은성 | 김예은",
+    en: "Gu Eunseong | Kim Yeeun",
   },
   parents: {
     ko: {

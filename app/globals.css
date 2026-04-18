@@ -1,16 +1,16 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #fcfaf8;
-  --surface: #fffefd;
-  --surface-soft: #fff8f6;
-  --foreground: #2d2425;
-  --muted: #7d6e70;
-  --line: #ecdedd;
+  --background: #f5f8fc;
+  --surface: #ffffff;
+  --surface-soft: #f0f4f9;
+  --foreground: #232a33;
+  --muted: #6e7886;
+  --line: #dde4ed;
   --accent: #dd8f9d;
   --accent-strong: #cd7385;
   --accent-soft: #fdf0f2;
-  --shadow-soft: 0 12px 30px rgba(128, 83, 92, 0.12);
+  --shadow-soft: 0 12px 30px rgba(51, 69, 94, 0.1);
 }
 
 * {
@@ -21,10 +21,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background:
-    radial-gradient(circle at 15% 0%, #fff2f3 0%, transparent 32%),
-    radial-gradient(circle at 100% 20%, #fff5ee 0%, transparent 26%),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
   min-height: 100%;
 }
@@ -56,6 +53,24 @@ img {
     serif;
   font-weight: 500;
   letter-spacing: 0.01em;
+}
+
+.wi-invitation-line {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  text-wrap: pretty;
+}
+
+.wi-information-venue-address {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  text-wrap: pretty;
+}
+
+.wi-rsvp-description {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  text-wrap: pretty;
 }
 
 .masonry-grid {
