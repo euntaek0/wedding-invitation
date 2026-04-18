@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
-import { photoAssets } from "@/lib/photos";
+import { getPhotoSrc, getPhotoThumbSrc, photoAssets } from "@/lib/photos";
 
 type Photo = (typeof photoAssets)[number];
 
@@ -25,7 +25,7 @@ function GalleryLightbox({
     >
       <div className="relative mx-auto flex h-full max-w-[980px] items-center justify-center px-4 py-10">
         <Image
-          src={`/imgs/${photos[index].file}`}
+          src={getPhotoSrc(photos[index].file)}
           alt="확대된 갤러리 사진"
           width={photos[index].width}
           height={photos[index].height}
@@ -152,7 +152,7 @@ export function GalleryPageClient({ language }: { language: "ko" | "en" }) {
                   onClick={() => setLightbox(photoIndexById.get(photo.id) ?? 0)}
                 >
                   <Image
-                    src={`/imgs/${photo.file}`}
+                    src={getPhotoThumbSrc(photo.file)}
                     alt="웨딩 아카이브 사진"
                     width={photo.width}
                     height={photo.height}

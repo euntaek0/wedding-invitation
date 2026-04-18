@@ -5,7 +5,7 @@ import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
-import { moodGallerySections, photoAssets } from "@/lib/photos";
+import { getPhotoSrc, getPhotoThumbSrc, moodGallerySections, photoAssets } from "@/lib/photos";
 import type { Language } from "@/types/language";
 
 type GalleryCopy = {
@@ -80,7 +80,7 @@ function GalleryTrack({
                   aria-label={language === "ko" ? `${index + 1}번 사진 크게 보기` : `Open photo ${index + 1}`}
                 >
                   <img
-                    src={`/imgs/${photo.file}`}
+                    src={getPhotoThumbSrc(photo.file)}
                     alt="웨딩 갤러리 사진"
                     width={photo.width}
                     height={photo.height}
@@ -211,7 +211,7 @@ export function GallerySection({ language, copy, galleryHref }: GallerySectionPr
           >
             <Image
               key={lightbox.photos[lightbox.index].id}
-              src={`/imgs/${lightbox.photos[lightbox.index].file}`}
+              src={getPhotoSrc(lightbox.photos[lightbox.index].file)}
               alt="확대된 웨딩 사진"
               width={lightbox.photos[lightbox.index].width}
               height={lightbox.photos[lightbox.index].height}

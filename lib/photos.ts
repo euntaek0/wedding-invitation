@@ -5,6 +5,14 @@ export interface PhotoAsset {
   height: number
 }
 
+export function getPhotoSrc(file: string) {
+  return `/imgs/${file}`
+}
+
+export function getPhotoThumbSrc(file: string) {
+  return `/imgs/thumbs/${file}`
+}
+
 export const photoAssets: PhotoAsset[] = [
   { id: 'WJ_00117', file: 'WJ_00117.webp', width: 4626, height: 6938 },
   { id: 'WJ_00752', file: 'WJ_00752.webp', width: 6938, height: 4626 },
