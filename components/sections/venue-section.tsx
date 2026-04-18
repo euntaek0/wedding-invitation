@@ -1,43 +1,43 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Reveal } from '@/components/ui/reveal'
-import { siteConfig } from '@/lib/site-config'
+import { useState } from "react";
+import { Reveal } from "@/components/ui/reveal";
+import { siteConfig } from "@/lib/site-config";
 
 type VenueCopy = {
-  heading: string
-  subheading: string
-  addressLabel: string
-  naver: string
-  kakao: string
-  mapHint: string
-}
+  heading: string;
+  subheading: string;
+  addressLabel: string;
+  naver: string;
+  kakao: string;
+  mapHint: string;
+};
 
 type NavCopy = {
-  copyAddress: string
-  copied: string
-}
+  copyAddress: string;
+  copied: string;
+};
 
 interface VenueSectionProps {
-  copy: VenueCopy
-  navCopy: NavCopy
+  copy: VenueCopy;
+  navCopy: NavCopy;
 }
 
 export function VenueSection({ copy, navCopy }: VenueSectionProps) {
-  const [isCopied, setIsCopied] = useState(false)
+  const [isCopied, setIsCopied] = useState(false);
 
   const copyAddress = async () => {
     try {
-      await navigator.clipboard.writeText(siteConfig.venueAddress)
-      setIsCopied(true)
-      window.setTimeout(() => setIsCopied(false), 1400)
+      await navigator.clipboard.writeText(siteConfig.venueAddress);
+      setIsCopied(true);
+      window.setTimeout(() => setIsCopied(false), 1400);
     } catch {
-      setIsCopied(false)
+      setIsCopied(false);
     }
-  }
+  };
 
   return (
-    <Reveal className="wi-section wi-section-venue border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+    <Reveal className="wi-section wi-section-venue px-5 py-12 sm:px-8 sm:py-14">
       <section id="venue" className="wi-venue space-y-6">
         <h2 className="wi-title wi-venue-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
@@ -48,8 +48,8 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
             className="wi-venue-map-canvas relative h-44 bg-[var(--surface-soft)]"
             style={{
               backgroundImage:
-                'linear-gradient(0deg, rgba(221,143,157,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(221,143,157,0.08) 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
+                "linear-gradient(0deg, rgba(221,143,157,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(221,143,157,0.08) 1px, transparent 1px)",
+              backgroundSize: "28px 28px",
             }}
           >
             <div className="wi-venue-map-pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-semibold text-white shadow-sm">
@@ -65,30 +65,59 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
             <p className="wi-venue-address-label text-base text-[var(--muted)]">
               <span className="font-medium text-[var(--foreground)]">{copy.addressLabel}</span>
             </p>
-            <p className="wi-venue-address-detail text-xs leading-relaxed text-[#8e8284]">{siteConfig.venueAddress}</p>
+            <p className="wi-venue-address-detail wi-information-venue-address mr-auto max-w-[240px] text-left text-xs leading-relaxed text-[#8e8284]">
+              {siteConfig.venueAddress}
+            </p>
 
             <div className="wi-venue-actions grid grid-cols-3 gap-2">
               <a
                 href={siteConfig.naverMapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="wi-venue-action wi-venue-action-naver rounded-xl border border-[var(--line)] px-3 py-2 text-center text-xs font-medium text-[var(--foreground)]"
+                className="wi-venue-action wi-venue-action-naver inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--line)] px-2.5 py-2 text-center text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
               >
+                <img
+                  src="https://ssl.pstatic.net/static/maps/assets/icons/favicon.ico"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="h-3.5 w-3.5"
+                  aria-hidden="true"
+                />
                 {copy.naver}
               </a>
               <a
                 href={siteConfig.kakaoMapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="wi-venue-action wi-venue-action-kakao rounded-xl border border-[var(--line)] px-3 py-2 text-center text-xs font-medium text-[var(--foreground)]"
+                className="wi-venue-action wi-venue-action-kakao inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--line)] px-2.5 py-2 text-center text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
               >
+                <img
+                  src="https://place.map.kakao.com/favicon.ico"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="h-3.5 w-3.5 rounded-[3px]"
+                  aria-hidden="true"
+                />
                 {copy.kakao}
               </a>
               <button
                 type="button"
                 onClick={copyAddress}
-                className="wi-venue-action wi-venue-action-copy rounded-xl border border-[var(--line)] px-3 py-2 text-xs font-medium text-[var(--foreground)]"
+                className="wi-venue-action wi-venue-action-copy inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--line)] px-2.5 py-2 text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
               >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-3.5 w-3.5 text-[var(--muted)]"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  aria-hidden="true"
+                >
+                  <rect x="9" y="9" width="11" height="11" rx="2" />
+                  <path d="M5 15V5a1 1 0 0 1 1-1h10" />
+                </svg>
                 {isCopied ? navCopy.copied : navCopy.copyAddress}
               </button>
             </div>
@@ -96,5 +125,5 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
         </div>
       </section>
     </Reveal>
-  )
+  );
 }

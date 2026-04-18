@@ -305,7 +305,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
   }
 
   return (
-    <Reveal className="wi-section wi-section-upload border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+    <Reveal className="wi-section wi-section-upload px-5 py-12 sm:px-8 sm:py-14">
       <section id="guest-upload" className="wi-upload space-y-6">
         <h2 className="wi-title wi-upload-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}

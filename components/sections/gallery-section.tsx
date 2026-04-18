@@ -15,7 +15,7 @@ interface GallerySectionProps {
 
 export function GallerySection({ language, copy }: GallerySectionProps) {
   return (
-    <Reveal className="wi-section wi-section-gallery border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+    <Reveal className="wi-section wi-section-gallery px-5 py-12 sm:px-8 sm:py-14">
       <section id="gallery" className="wi-gallery space-y-10">
         {moodGallerySections.map((group) => {
           const cover = photoAssets.find((photo) => photo.id === group.coverId);

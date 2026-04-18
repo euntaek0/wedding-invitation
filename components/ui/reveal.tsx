@@ -15,15 +15,21 @@ export function Reveal({ children, className }: RevealProps) {
     const node = ref.current
     if (!node) return
 
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting || entry.intersectionRatio > 0) {
           setVisible(true)
-          observer.disconnect()
+          observer.unobserve(node)
         }
       },
       {
-        threshold: 0.18,
+        threshold: 0.01,
+        rootMargin: '0px 0px -8% 0px',
       },
     )
 

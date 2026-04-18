@@ -11,7 +11,7 @@ interface FooterSectionProps {
 
 export function FooterSection({ copy }: FooterSectionProps) {
   return (
-    <Reveal className="wi-section wi-section-footer border-t border-[var(--line)] px-5 py-16 sm:px-8 sm:py-20">
+    <Reveal className="wi-section wi-section-footer px-5 py-16 sm:px-8 sm:py-20">
       <footer
         id="footer"
         className="wi-footer flex min-h-[40svh] flex-col items-center justify-center space-y-4 text-center"

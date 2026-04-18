@@ -101,3 +101,10 @@ img {
   opacity: 1;
   transform: translateY(0);
 }
+
+.reveal-init.wi-section-invitation {
+  transform: translateY(34px);
+  transition:
+    opacity 0.78s ease,
+    transform 0.78s ease;
+}

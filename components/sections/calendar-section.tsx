@@ -65,7 +65,7 @@ export function CalendarSection({ language }: CalendarSectionProps) {
   const ddayTailEn = dDays > 0 ? `${dDays} days left until the wedding.` : "Today is the wedding day.";
 
   return (
-    <Reveal className="wi-section wi-section-calendar border-t border-[var(--line)] px-5 py-8 sm:px-8 sm:py-10">
+    <Reveal className="wi-section wi-section-calendar px-5 py-8 sm:px-8 sm:py-10">
       <section id="calendar" className="wi-calendar">
         <div className="wi-calendar-card px-6 py-10">
           <div className="space-y-2 text-center">

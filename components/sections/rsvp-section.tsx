@@ -122,7 +122,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
   }
 
   return (
-    <Reveal className="wi-section wi-section-rsvp border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+    <Reveal className="wi-section wi-section-rsvp px-5 py-12 sm:px-8 sm:py-14">
       <section id="rsvp" className="wi-rsvp space-y-6">
         <h2 className="wi-title wi-rsvp-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}

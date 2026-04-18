@@ -43,7 +43,7 @@ export function WeddingInfoSection({ language, copy }: WeddingInfoSectionProps) 
   };
 
   return (
-    <Reveal className="wi-section wi-section-information border-t border-[var(--line)] px-5 py-12 sm:px-8 sm:py-14">
+    <Reveal className="wi-section wi-section-information px-5 py-12 sm:px-8 sm:py-14">
       <section id="information" className="wi-information space-y-7">
         <h2 className="wi-title wi-information-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}
