@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
 import { getUploadAdapter, getUploadProvider } from '@/lib/upload/adapters'
+import {
+  getUploadValidationMessage,
+  validateUploadFiles,
+} from '@/lib/upload/config'
 import { uploadPresignSchema } from '@/lib/validators'
 
 export async function POST(request: Request) {
@@ -17,9 +21,21 @@ export async function POST(request: Request) {
       )
     }
 
+    const uploadIssues = validateUploadFiles(parsed.data.files)
+
+    if (uploadIssues.length > 0) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: getUploadValidationMessage(uploadIssues[0]),
+        },
+        { status: 400 },
+      )
+    }
+
     const provider = getUploadProvider()
     const adapter = getUploadAdapter(provider)
-    const targets = await adapter.createUploadTargets(parsed.data.files)
+    const targets = await adapter.createUploadTargets(parsed.data.files, parsed.data.uploaderName)
 
     return NextResponse.json({
       ok: true,

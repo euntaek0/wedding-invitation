@@ -19,7 +19,7 @@ export function getUploadAdapter(provider: UploadProvider): UploadAdapter {
 export function getUploadProvider(): UploadProvider {
   const provider = process.env.UPLOAD_PROVIDER ?? 'mock'
 
-  if (provider === 's3' || provider === 'supabase' || provider === 'firebase') {
+  if (provider === 'mock' || provider === 's3' || provider === 'supabase' || provider === 'firebase') {
     return provider
   }
 

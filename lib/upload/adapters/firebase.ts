@@ -1,5 +1,5 @@
 import type { UploadAdapter } from './types'
-import { createPendingRecords } from './shared'
+import { createUploadedPendingRecords } from './shared'
 
 export const firebaseUploadAdapter: UploadAdapter = {
   provider: 'firebase',
@@ -12,6 +12,6 @@ export const firebaseUploadAdapter: UploadAdapter = {
     )
   },
   async completeUpload(items) {
-    return createPendingRecords(items)
+    return createUploadedPendingRecords(items)
   },
 }
