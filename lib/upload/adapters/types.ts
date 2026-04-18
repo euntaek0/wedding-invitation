@@ -8,7 +8,7 @@ import type {
 
 export interface UploadAdapter {
   provider: UploadProvider
-  createUploadTargets(files: UploadFileInput[]): Promise<UploadTarget[]>
+  createUploadTargets(files: UploadFileInput[], uploaderName?: string): Promise<UploadTarget[]>
   completeUpload(
     items: UploadedFileConfirmation[],
     uploaderName?: string,

@@ -1,16 +1,18 @@
 import { NextResponse } from 'next/server'
-import { rsvpSchema } from '@/lib/validators'
+import { parseRsvpPayload } from '@/lib/rsvp'
+import type { RSVPApiResponse } from '@/types/rsvp'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const parsed = rsvpSchema.safeParse(body)
+    const parsed = parseRsvpPayload(body)
 
-    if (!parsed.success) {
+    if (!parsed.ok) {
       return NextResponse.json(
         {
           ok: false,
-          message: parsed.error.issues[0]?.message ?? 'Invalid RSVP payload',
+          message: parsed.message,
+          fieldErrors: parsed.fieldErrors,
         },
         { status: 400 },
       )
@@ -23,14 +25,23 @@ export async function POST(request: Request) {
       source: 'wedding-invitation-web',
     }
 
-    const webhookUrl = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL
+    const webhookUrl = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL?.trim()
+    const isProduction = process.env.NODE_ENV === 'production'
 
-    // Setup required:
-    // Connect your deployed Google Apps Script Web App URL in GOOGLE_APPS_SCRIPT_WEBHOOK_URL.
     if (!webhookUrl) {
+      if (isProduction) {
+        return NextResponse.json<RSVPApiResponse>(
+          {
+            ok: false,
+            message: 'RSVP webhook is not configured on the server.',
+          },
+          { status: 500 },
+        )
+      }
+
       return NextResponse.json({
         ok: true,
-        message: 'RSVP stored in mock mode. Set GOOGLE_APPS_SCRIPT_WEBHOOK_URL to enable Google Sheets.',
+        message: 'RSVP stored in development mock mode.',
         data: payload,
       })
     }
@@ -58,9 +69,12 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        message,
+        message:
+          process.env.NODE_ENV === 'production'
+            ? 'RSVP could not be delivered. Please try again shortly.'
+            : message,
       },
-      { status: 500 },
+      { status: 502 },
     )
   }
 }

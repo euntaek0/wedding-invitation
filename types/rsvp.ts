@@ -12,7 +12,10 @@ export interface RSVPPayload {
   message?: string
 }
 
+export type RSVPFieldErrors = Partial<Record<keyof RSVPPayload, string>>
+
 export interface RSVPApiResponse {
   ok: boolean
   message: string
+  fieldErrors?: RSVPFieldErrors
 }

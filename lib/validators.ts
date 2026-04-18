@@ -2,12 +2,12 @@ import { z } from 'zod'
 
 export const rsvpSchema = z
   .object({
-    name: z.string().trim().min(1).max(40),
+    name: z.string().trim().min(1, 'Name is required').max(40),
     phone: z
       .string()
       .trim()
-      .min(8)
-      .max(20)
+      .min(8, 'Phone number is too short')
+      .max(20, 'Phone number is too long')
       .regex(/^[0-9+\-()\s]+$/, 'Invalid phone format'),
     side: z.enum(['groom', 'bride']),
     attendance: z.enum(['attending', 'notAttending']),
@@ -23,14 +23,6 @@ export const rsvpSchema = z
         message: 'Attendee count must be at least 1 when attending',
       })
     }
-
-    if (data.attendance === 'notAttending' && data.attendeeCount !== 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['attendeeCount'],
-        message: 'Attendee count must be 0 when not attending',
-      })
-    }
   })
 
 export const uploadFileSchema = z.object({
@@ -41,6 +33,7 @@ export const uploadFileSchema = z.object({
 })
 
 export const uploadPresignSchema = z.object({
+  uploaderName: z.string().trim().max(40).optional(),
   files: z.array(uploadFileSchema).min(1).max(20),
 })
 
@@ -49,13 +42,10 @@ export const uploadCompleteSchema = z.object({
   items: z
     .array(
       z.object({
-        id: z.string().min(1),
+        uploadId: z.string().uuid(),
         key: z.string().min(1),
-        name: z.string().min(1),
-        type: z.string().min(1),
-        size: z.number().int().positive(),
-        url: z.string().url(),
       }),
     )
-    .min(1),
+    .min(1)
+    .max(20),
 })
