@@ -21,7 +21,8 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
   const mm = String(eventDate.getMonth() + 1).padStart(2, "0");
   const dd = String(eventDate.getDate()).padStart(2, "0");
   const weekday = language === "ko" ? "SATURDAY" : "SATURDAY";
-  const [leftName, rightName] = weddingContent.names[language].split("|").map((part) => part.trim());
+  const leftName = language === "ko" ? "구은성" : "Koo Eunseong";
+  const rightName = language === "ko" ? "김예은" : "Kim Yeeun";
 
   return (
     <Reveal className="wi-section wi-section-hero px-5 pb-18 pt-16 sm:px-8 sm:pb-20 sm:pt-20">
@@ -54,9 +55,9 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
         <div className="wi-hero-copy space-y-4 text-center">
           <h1 className="wi-hero-names section-title py-4 text-[1.25rem] leading-[1.24] text-[var(--foreground)]">
             <span className="inline-flex items-center justify-center gap-4">
-              <span className="wi-hero-name-left">{leftName || weddingContent.names[language]}</span>
-              {rightName ? <span className="wi-hero-name-divider text-[var(--muted)]">|</span> : null}
-              {rightName ? <span className="wi-hero-name-right">{rightName}</span> : null}
+              <span className="wi-hero-name-left">{leftName}</span>
+              <span className="wi-hero-name-divider text-[1rem] text-[#b8abac]">|</span>
+              <span className="wi-hero-name-right">{rightName}</span>
             </span>
           </h1>
           <div className="wi-hero-meta space-y-3">

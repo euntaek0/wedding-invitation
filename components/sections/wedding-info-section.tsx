@@ -50,7 +50,7 @@ export function WeddingInfoSection({ language, copy }: WeddingInfoSectionProps) 
         </h2>
 
         <div className="wi-information-body space-y-9 text-center">
-          <div className="wi-information-parents space-y-3">
+          <div className="wi-information-parents space-y-3 -mb-2">
             <p className={`wi-information-label wi-information-parent-label ${labelClass}`}>{copy.parentHeading}</p>
             <p className="wi-information-parent-line text-base leading-relaxed text-[var(--foreground)]">
               {renderParentSentence(weddingContent.parents[language].groom)}

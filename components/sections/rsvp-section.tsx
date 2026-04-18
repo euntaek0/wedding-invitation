@@ -132,7 +132,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="wi-rsvp-open-button mx-auto inline-flex min-w-[220px] justify-center rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
+          className="wi-rsvp-open-button mx-auto flex min-w-[220px] items-center justify-center rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
         >
           {copy.openModal}
         </button>
