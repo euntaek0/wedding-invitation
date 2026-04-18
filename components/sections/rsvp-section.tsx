@@ -216,9 +216,20 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="wi-rsvp-open-button wi-btn-primary mx-auto flex min-w-[180px] items-center justify-center rounded-xl px-4 py-4 text-base font-medium"
+          className="wi-rsvp-open-button wi-btn-primary mx-auto flex min-w-[180px] items-center justify-center gap-2 rounded-xl px-4 py-4 text-base font-medium"
         >
-          {copy.openModal}
+          <svg
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <path d="M22 2 11 13" />
+            <path d="M22 2 15 22l-4-9-9-4Z" />
+          </svg>
+          <span>{copy.openModal}</span>
         </button>
       </section>
 

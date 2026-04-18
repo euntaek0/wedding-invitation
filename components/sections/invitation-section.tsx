@@ -44,7 +44,7 @@ export function InvitationSection({ copy }: InvitationSectionProps) {
 
       <div className="wi-invitation-hand-photo mt-14 -mx-7 sm:-mx-11 mb-6">
         <Image
-          src="/imgs/hand_crop.jpeg"
+          src="/imgs/hand.webp"
           alt="신랑 신부 손과 부케 사진"
           width={2910}
           height={1805}

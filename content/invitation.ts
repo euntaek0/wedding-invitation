@@ -17,7 +17,7 @@ export const weddingContent = {
   },
   venue: {
     name: "꽃재교회 2층 대예배실",
-    address: "기독교대한감리회 꽃재교회 2층 대예배실, 마장로 164(1070-5)",
+    address: "기독교대한감리회 꽃재교회 2층 대예배실,\n마장로 164(1070-5)",
   },
   date: {
     iso: "2026-06-06T12:00:00+09:00",
@@ -80,7 +80,7 @@ export const invitationCopy = {
     rsvp: {
       heading: "참석 의사 전달",
       description: "예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
-      openModal: "참석 의사 작성하기",
+      openModal: "작성하기",
       closeModal: "닫기",
       name: "성함",
       phone: "연락처",
@@ -115,6 +115,7 @@ export const invitationCopy = {
     gallery: {
       heading: "Gallery",
       description: "두 사람의 순간을 담은 사진들을 천천히 감상해보세요.",
+      viewAll: "전체 갤러리 보기",
       openLabel: "이미지 보기",
       close: "닫기",
       next: "다음",
@@ -122,7 +123,7 @@ export const invitationCopy = {
     },
     upload: {
       heading: "하객 사진 업로드",
-      description: "예식 당일의 소중한 장면을 공유해주세요.\n 업로드된 사진은 승인 후 반영됩니다.",
+      description: "예식 당일의 소중한 장면을 공유해주세요.",
       openModal: "사진 업로드하기",
       closeModal: "닫기",
       uploaderName: "업로드하는 분 성함 (선택)",
@@ -153,7 +154,9 @@ export const invitationCopy = {
       copied: "복사됨",
     },
     footer: {
-      thanks: "귀한 걸음으로 함께해주셔서 진심으로 감사합니다.",
+      thanks:
+        "부부의 연을 맺는 소중한 날\n귀한 걸음으로 함께해주셔서 진심으로 감사합니다.\n서로를 사랑하고 섬기며 예쁘게 살겠습니다.",
+      thanks2: "",
       signature: "구은성 · 김예은 드림",
     },
   },
@@ -210,7 +213,7 @@ export const invitationCopy = {
     rsvp: {
       heading: "RSVP",
       description: "Please let us know your attendance to help us prepare with care.",
-      openModal: "Open RSVP Form",
+      openModal: "Write RSVP",
       closeModal: "Close",
       name: "Name",
       phone: "Phone number",
@@ -245,6 +248,7 @@ export const invitationCopy = {
     gallery: {
       heading: "Gallery",
       description: "A collection of moments that led us to this day.",
+      viewAll: "View Full Gallery",
       openLabel: "Open image",
       close: "Close",
       next: "Next",

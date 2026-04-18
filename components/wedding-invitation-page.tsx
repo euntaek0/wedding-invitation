@@ -53,7 +53,7 @@ export function WeddingInvitationPage() {
         <CalendarSection language={language} copy={copy.calendar} />
         <VenueSection copy={copy.venue} navCopy={copy.nav} />
         <RsvpSection copy={copy.rsvp} />
-        <GallerySection language={language} copy={copy.gallery} />
+        <GallerySection language={language} copy={copy.gallery} galleryHref={`/gallery?lang=${language}`} />
         <GuestUploadSection copy={copy.upload} />
         <AccountSection language={language} copy={copy.account} />
         <FooterSection copy={copy.footer} />

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
@@ -10,6 +11,7 @@ import type { Language } from "@/types/language";
 type GalleryCopy = {
   heading: string;
   description: string;
+  viewAll: string;
   close: string;
   next: string;
   prev: string;
@@ -18,6 +20,7 @@ type GalleryCopy = {
 interface GallerySectionProps {
   language: Language;
   copy: GalleryCopy;
+  galleryHref: string;
 }
 
 type Photo = (typeof photoAssets)[number];
@@ -76,14 +79,14 @@ function GalleryTrack({
                   }`}
                   aria-label={language === "ko" ? `${index + 1}번 사진 크게 보기` : `Open photo ${index + 1}`}
                 >
-                  <Image
+                  <img
                     src={`/imgs/${photo.file}`}
                     alt="웨딩 갤러리 사진"
                     width={photo.width}
                     height={photo.height}
-                    className="h-[440px] w-full object-cover sm:h-[520px]"
-                    sizes="(max-width: 768px) 82vw, 64vw"
-                    loading="lazy"
+                    className="h-[440px] w-full bg-[var(--surface-soft)] object-cover sm:h-[520px]"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
                   />
                 </button>
               </div>
@@ -95,7 +98,7 @@ function GalleryTrack({
   );
 }
 
-export function GallerySection({ language, copy }: GallerySectionProps) {
+export function GallerySection({ language, copy, galleryHref }: GallerySectionProps) {
   const [lightbox, setLightbox] = useState<{ photos: Photo[]; index: number } | null>(null);
   const [lightboxVisible, setLightboxVisible] = useState(false);
   const lightboxTouchStart = useRef<number | null>(null);
@@ -114,6 +117,7 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
         .filter((group): group is { id: string; photos: Photo[] } => Boolean(group)),
     [],
   );
+  const primaryGroup = groupedPhotos[0] ?? null;
 
   useEffect(() => {
     return () => {
@@ -167,12 +171,25 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
   return (
     <>
       <Reveal className="wi-section wi-section-gallery px-5 py-12 sm:px-8 sm:py-14">
-        <section id="gallery" className="wi-gallery space-y-10">
-          {groupedPhotos.map((group) => (
-            <article key={group.id} className="wi-gallery-group space-y-4">
-              <GalleryTrack groupId={group.id} photos={group.photos} language={language} onOpen={openLightbox} />
+        <section id="gallery" className="wi-gallery space-y-8">
+          {primaryGroup ? (
+            <article key={primaryGroup.id} className="wi-gallery-group space-y-4">
+              <GalleryTrack
+                groupId={primaryGroup.id}
+                photos={primaryGroup.photos}
+                language={language}
+                onOpen={openLightbox}
+              />
             </article>
-          ))}
+          ) : null}
+          <div className="flex justify-center pt-2">
+            <Link
+              href={galleryHref}
+              className="wi-gallery-link wi-btn-secondary inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm !text-[var(--muted)]"
+            >
+              {copy.viewAll}
+            </Link>
+          </div>
         </section>
       </Reveal>
 

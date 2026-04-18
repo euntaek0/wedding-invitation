@@ -37,7 +37,7 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
   };
 
   return (
-    <Reveal className="wi-section wi-section-venue px-5 py-12 sm:px-8 sm:py-14">
+    <Reveal className="wi-section wi-section-venue mx-auto max-w-[360px] px-5 py-12 sm:px-8 sm:py-14">
       <section id="venue" className="wi-venue space-y-6">
         <h2 className="wi-title wi-venue-title section-title text-center text-[1.8rem] text-[var(--foreground)]">
           {copy.heading}

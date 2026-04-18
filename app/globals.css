@@ -28,8 +28,8 @@ body {
 
 body {
   width: 100%;
-  font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
-    serif;
+  font-family: 'Pretendard', 'Noto Sans KR', 'Eulyoo1945-Regular',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
   line-height: 1.68;
 }
 
@@ -52,14 +52,18 @@ img {
 }
 
 .section-title {
-  font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
-    serif;
+  font-family: 'Pretendard', 'Noto Sans KR', 'Eulyoo1945-Regular',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
   letter-spacing: 0.01em;
 }
 
+.wi-title {
+  color: #8f7f72 !important;
+}
+
 .wedding-script-title {
-  font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
-    serif;
+  font-family: 'Pretendard', 'Noto Sans KR', 'Eulyoo1945-Regular',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
   font-weight: 500;
   letter-spacing: 0.01em;
 }
@@ -83,7 +87,7 @@ img {
 }
 
 .masonry-grid {
-  column-count: 2;
+  column-count: 3;
   column-gap: 0.8rem;
 }
 
@@ -119,11 +123,11 @@ img {
 }
 
 .wi-btn-primary {
-  border: 1px solid #4f2f24 !important;
-  background: linear-gradient(180deg, #5a372a 0%, #4f2f24 100%) !important;
+  border: none !important;
+  background: linear-gradient(180deg, #ccbcb0 0%, #c2b0a2 100%) !important;
   color: #fff !important;
   box-shadow:
-    0 10px 22px rgba(79, 47, 36, 0.22),
+    0 10px 22px rgba(73, 62, 54, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
   transition:
     transform 0.18s ease,
@@ -134,14 +138,14 @@ img {
 .wi-btn-primary:hover {
   filter: brightness(1.03) !important;
   box-shadow:
-    0 12px 26px rgba(79, 47, 36, 0.26),
+    0 12px 26px rgba(73, 62, 54, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
 }
 
 .wi-btn-primary:active {
   transform: translateY(1px);
   box-shadow:
-    0 6px 14px rgba(79, 47, 36, 0.2),
+    0 6px 14px rgba(73, 62, 54, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
@@ -191,5 +195,16 @@ img {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes wiDigitDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-38%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

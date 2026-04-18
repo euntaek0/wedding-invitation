@@ -19,6 +19,23 @@ interface CalendarSectionProps {
   copy: CalendarCopy;
 }
 
+function AnimatedCountValue({ value }: { value: string }) {
+  const digits = value.padStart(2, "0").split("");
+
+  return (
+    <span className="inline-flex items-center justify-center gap-[0.04em] text-[24px] leading-none text-[#23262d]">
+      {digits.map((digit, index) => (
+        <span
+          key={`${index}-${digit}`}
+          className="inline-block animate-[wiDigitDrop_700ms_cubic-bezier(.22,.61,.36,1)]"
+        >
+          {digit}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 const dayLabels: Record<Language, string[]> = {
   ko: ["일", "월", "화", "수", "목", "금", "토"],
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -108,25 +125,32 @@ export function CalendarSection({ language }: CalendarSectionProps) {
 
           <div className="my-9 h-px bg-[#ddd3c8]" />
 
-          <div className="mx-auto max-w-[320px] space-y-3 text-center">
-            <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-end text-[0.78rem] tracking-[0.04em] text-[#ab9b90]">
-              <span>DAYS</span>
-              <span />
-              <span>HOUR</span>
-              <span />
-              <span>MIN</span>
-              <span />
-              <span>SEC</span>
-            </div>
-
-            <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-center px-3 text-[1rem] text-[#645955]">
-              <span>{two(days)}</span>
-              <span className="px-3 text-[#8f8075]">:</span>
-              <span>{two(hours)}</span>
-              <span className="px-3 text-[#8f8075]">:</span>
-              <span>{two(minutes)}</span>
-              <span className="px-3 text-[#8f8075]">:</span>
-              <span>{two(seconds)}</span>
+          <div className="mx-auto max-w-[430px] text-center">
+            <div className="mx-6 grid grid-cols-4 justify-items-center gap-2 sm:gap-2.5">
+              <div className="wi-calendar-count-card flex h-16 w-14 flex-col items-center justify-center rounded bg-white shadow-md">
+                <p className="text-[10px] leading-none tracking-[0.02em] text-[#666666]">DAYS</p>
+                <div className="mt-1 flex h-6 items-center justify-center overflow-hidden">
+                  <AnimatedCountValue value={two(days)} />
+                </div>
+              </div>
+              <div className="wi-calendar-count-card flex h-16 w-14 flex-col items-center justify-center rounded bg-white shadow-md">
+                <p className="text-[10px] leading-none tracking-[0.02em] text-[#666666]">HOUR</p>
+                <div className="mt-1 flex h-6 items-center justify-center overflow-hidden">
+                  <AnimatedCountValue value={two(hours)} />
+                </div>
+              </div>
+              <div className="wi-calendar-count-card flex h-16 w-14 flex-col items-center justify-center rounded bg-white shadow-md">
+                <p className="text-[10px] leading-none tracking-[0.02em] text-[#666666]">MIN</p>
+                <div className="mt-1 flex h-6 items-center justify-center overflow-hidden">
+                  <AnimatedCountValue value={two(minutes)} />
+                </div>
+              </div>
+              <div className="wi-calendar-count-card flex h-16 w-14 flex-col items-center justify-center rounded bg-white shadow-md">
+                <p className="text-[10px] leading-none tracking-[0.02em] text-[#666666]">SEC</p>
+                <div className="mt-1 flex h-6 items-center justify-center overflow-hidden">
+                  <AnimatedCountValue value={two(seconds)} />
+                </div>
+              </div>
             </div>
           </div>
 

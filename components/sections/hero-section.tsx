@@ -42,7 +42,7 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
 
         <div className="wi-hero-main-photo relative my-7 aspect-[1/1.06] overflow-hidden bg-transparent">
           <Image
-            src="/imgs/YJ_00859.jpg"
+            src="/imgs/YJ_00859.webp"
             alt="신랑 신부 웨딩 사진"
             width={3000}
             height={4000}

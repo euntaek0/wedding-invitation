@@ -180,7 +180,7 @@ export function AccountSection({ language, copy }: AccountSectionProps) {
         <section id="account" className="wi-account space-y-7 text-center">
           <div className="wi-account-header space-y-3">
             <h2 className="wi-title wi-account-title section-title text-[1.8rem] text-[#8f7f72]">{copy.heading}</h2>
-            <p className="wi-account-intro mx-auto max-w-[320px] whitespace-pre-line text-base leading-relaxed text-[var(--foreground)] [text-wrap:pretty]">
+            <p className="wi-account-intro mx-auto max-w-[320px] whitespace-pre-line text-base leading-relaxed text-[var(--muted)] [text-wrap:pretty]">
               {copy.intro}
             </p>
           </div>
