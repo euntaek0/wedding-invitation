@@ -142,6 +142,16 @@ export const invitationCopy = {
       missingTarget: "업로드 세션을 준비하지 못했습니다. 다시 시도해주세요.",
       finalizeFailed: "업로드는 완료되었지만 저장 확인에 실패했습니다. 잠시 후 다시 시도해주세요.",
     },
+    account: {
+      heading: "마음 전하는 곳",
+      intro: "참석이 어려우신 분들을 위해 \n계좌번호를 안내해 드립니다.\n너그러운 마음으로 양해 부탁드립니다.",
+      groomSide: "신랑측",
+      brideSide: "신부측",
+      openModal: "마음 전하기",
+      closeModal: "닫기",
+      copy: "복사",
+      copied: "복사됨",
+    },
     footer: {
       thanks: "귀한 걸음으로 함께해주셔서 진심으로 감사합니다.",
       signature: "구은성 · 김예은 드림",
@@ -261,6 +271,16 @@ export const invitationCopy = {
       tooLarge: "{name} must be {sizeMb}MB or smaller.",
       missingTarget: "The upload session could not be prepared. Please retry.",
       finalizeFailed: "The files uploaded, but the confirmation step failed. Please retry shortly.",
+    },
+    account: {
+      heading: "Account",
+      intro: "For guests who cannot attend in person, we share our account details below.",
+      groomSide: "Groom Side",
+      brideSide: "Bride Side",
+      openModal: "Send Gift",
+      closeModal: "Close",
+      copy: "Copy",
+      copied: "Copied",
     },
     footer: {
       thanks: "Thank you for celebrating this precious moment with us.",
