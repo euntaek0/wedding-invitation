@@ -57,7 +57,7 @@ export function Modal({ open, title, closeLabel, onClose, children }: ModalProps
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]"
+            className="wi-btn-secondary rounded-full px-3 py-1 text-xs text-[var(--muted)]"
           >
             {closeLabel}
           </button>

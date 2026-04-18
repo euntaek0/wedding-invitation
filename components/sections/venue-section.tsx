@@ -43,18 +43,15 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
           {copy.heading}
         </h2>
 
-        <div className="wi-venue-map-card overflow-hidden rounded-2xl border border-[var(--line)] bg-white">
+        <div className="wi-venue-map-card overflow-hidden rounded-2xl border border-[var(--line)] bg-white shadow-[0_10px_24px_rgba(25,32,45,0.10)]">
           <div
             className="wi-venue-map-canvas relative h-44 bg-[var(--surface-soft)]"
             style={{
-              backgroundImage:
-                "linear-gradient(0deg, rgba(221,143,157,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(221,143,157,0.08) 1px, transparent 1px)",
-              backgroundSize: "28px 28px",
+              backgroundImage: "url('/map/map.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           >
-            <div className="wi-venue-map-pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-semibold text-white shadow-sm">
-              꽃재교회
-            </div>
             <p className="wi-venue-map-hint absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs text-[var(--muted)]">
               {copy.mapHint}
             </p>
@@ -74,7 +71,7 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
                 href={siteConfig.naverMapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="wi-venue-action wi-venue-action-naver inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--line)] px-2.5 py-2 text-center text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
+                className="wi-venue-action wi-venue-action-naver wi-btn-secondary inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-2.5 py-2 text-center text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
               >
                 <img
                   src="https://ssl.pstatic.net/static/maps/assets/icons/favicon.ico"
@@ -90,7 +87,7 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
                 href={siteConfig.kakaoMapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="wi-venue-action wi-venue-action-kakao inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--line)] px-2.5 py-2 text-center text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
+                className="wi-venue-action wi-venue-action-kakao wi-btn-secondary inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-2.5 py-2 text-center text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
               >
                 <img
                   src="https://place.map.kakao.com/favicon.ico"
@@ -105,7 +102,7 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
               <button
                 type="button"
                 onClick={copyAddress}
-                className="wi-venue-action wi-venue-action-copy inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--line)] px-2.5 py-2 text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
+                className="wi-venue-action wi-venue-action-copy wi-btn-secondary inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-2.5 py-2 text-[11px] font-normal !text-[var(--muted)] sm:text-xs"
               >
                 <svg
                   viewBox="0 0 24 24"

@@ -382,14 +382,14 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
           {copy.heading}
         </h2>
         <div className="space-y-2 text-center">
-          <p className="wi-upload-description text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
+          <p className="wi-upload-description whitespace-pre-line text-base leading-relaxed text-[var(--muted)]">{copy.description}</p>
           <p className="text-sm leading-relaxed text-[var(--muted)]">{copy.privacyNotice}</p>
         </div>
 
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="wi-upload-open-button mx-auto flex min-w-[220px] items-center justify-center rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
+          className="wi-upload-open-button wi-btn-primary mx-auto mt-6 flex min-w-[180px] items-center justify-center rounded-xl px-4 py-4 text-base font-medium"
         >
           {copy.openModal}
         </button>
@@ -472,7 +472,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
                       <button
                         type="button"
                         onClick={() => startUpload([item.id])}
-                        className="wi-upload-retry rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--foreground)]"
+                        className="wi-upload-retry wi-btn-secondary rounded-full px-3 py-1 text-xs text-[var(--foreground)]"
                       >
                         {copy.retry}
                       </button>
@@ -481,7 +481,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
-                      className="wi-upload-remove rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--foreground)]"
+                      className="wi-upload-remove wi-btn-secondary rounded-full px-3 py-1 text-xs text-[var(--foreground)]"
                     >
                       {copy.remove}
                     </button>
@@ -501,7 +501,7 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
             type="button"
             disabled={!hasUploadable || isUploading}
             onClick={() => startUpload()}
-            className="wi-upload-submit w-full rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="wi-upload-submit wi-btn-primary w-full rounded-xl px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed"
           >
             {isUploading ? copy.uploading : copy.submit}
           </button>

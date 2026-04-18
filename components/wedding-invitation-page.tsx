@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { invitationCopy } from "@/content/invitation";
+import { AccountSection } from "@/components/sections/account-section";
 import { CalendarSection } from "@/components/sections/calendar-section";
 import { FooterSection } from "@/components/sections/footer-section";
 import { GallerySection } from "@/components/sections/gallery-section";
@@ -54,6 +55,7 @@ export function WeddingInvitationPage() {
         <RsvpSection copy={copy.rsvp} />
         <GallerySection language={language} copy={copy.gallery} />
         <GuestUploadSection copy={copy.upload} />
+        <AccountSection language={language} copy={copy.account} />
         <FooterSection copy={copy.footer} />
     </main>
   );

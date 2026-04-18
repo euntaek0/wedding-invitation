@@ -31,7 +31,7 @@ export function InvitationSection({ copy }: InvitationSectionProps) {
 
   return (
     <Reveal className="wi-section wi-section-invitation px-7 py-14 sm:px-11 sm:py-16">
-      <section id="invitation" className="wi-invitation mx-auto max-w-[340px] space-y-9 text-center">
+      <section id="invitation" className="wi-invitation mx-auto mb-40 max-w-[340px] space-y-9 text-center">
         <div className="wi-invitation-header space-y-3">
           <p className="wi-invitation-badge text-[0.9rem] tracking-[0.3em] text-[#9c8f91]">INVITATION</p>
           <h2 className="wi-title wi-invitation-title section-title text-[1.55rem] text-[#87797b]">{copy.heading}</h2>
@@ -42,7 +42,7 @@ export function InvitationSection({ copy }: InvitationSectionProps) {
         </div>
       </section>
 
-      <div className="wi-invitation-hand-photo mt-14 -mx-7 sm:-mx-11">
+      <div className="wi-invitation-hand-photo mt-14 -mx-7 sm:-mx-11 mb-6">
         <Image
           src="/imgs/hand_crop.jpeg"
           alt="신랑 신부 손과 부케 사진"

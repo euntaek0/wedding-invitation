@@ -122,7 +122,7 @@ export const invitationCopy = {
     },
     upload: {
       heading: "하객 사진 업로드",
-      description: "예식 당일의 소중한 장면을 공유해주세요.",
+      description: "예식 당일의 소중한 장면을 공유해주세요.\n 업로드된 사진은 승인 후 반영됩니다.",
       openModal: "사진 업로드하기",
       closeModal: "닫기",
       uploaderName: "업로드하는 분 성함 (선택)",

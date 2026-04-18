@@ -216,7 +216,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="wi-rsvp-open-button mx-auto flex min-w-[220px] items-center justify-center rounded-xl border border-[var(--line)] bg-white px-4 py-4 text-base font-medium text-[var(--foreground)]"
+          className="wi-rsvp-open-button wi-btn-primary mx-auto flex min-w-[180px] items-center justify-center rounded-xl px-4 py-4 text-base font-medium"
         >
           {copy.openModal}
         </button>
@@ -320,7 +320,7 @@ export function RsvpSection({ copy }: RsvpSectionProps) {
           <button
             type="submit"
             disabled={!canSubmit || isSubmitting}
-            className="wi-rsvp-submit w-full rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="wi-rsvp-submit wi-btn-primary w-full rounded-xl px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed"
           >
             {isSubmitting ? copy.submitting : copy.submit}
           </button>

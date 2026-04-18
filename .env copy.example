@@ -1,0 +1,44 @@
+# Public site
+NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
+NEXT_PUBLIC_WEDDING_ICS_PATH=/calendar/wedding-invitation.ics
+
+# Map links
+NEXT_PUBLIC_NAVER_MAP_URL=https://naver.me/FvEgIqLh
+NEXT_PUBLIC_KAKAO_MAP_URL=https://place.map.kakao.com/23465934
+
+# Kakao share placeholder (set to true only after full SDK integration)
+NEXT_PUBLIC_KAKAO_SHARE_ENABLED=false
+NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY=
+
+# RSVP -> Google Apps Script Web App URL
+# Example: https://script.google.com/macros/s/AKfycb.../exec
+# Required in production. Optional only for local development mock mode.
+GOOGLE_APPS_SCRIPT_WEBHOOK_URL=
+
+# Upload provider: mock | s3 | supabase | firebase
+UPLOAD_PROVIDER=supabase
+
+# Upload limits used by the server
+UPLOAD_MAX_FILE_SIZE_MB=12
+UPLOAD_MAX_FILES=10
+
+# Optional public mirrors for client-side helper text
+NEXT_PUBLIC_UPLOAD_MAX_FILE_SIZE_MB=12
+NEXT_PUBLIC_UPLOAD_MAX_FILES=10
+
+# S3 placeholders (not implemented in this phase)
+S3_REGION=
+S3_BUCKET=
+S3_ACCESS_KEY_ID=
+S3_SECRET_ACCESS_KEY=
+
+# Supabase placeholders
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_STORAGE_BUCKET=guest-uploads
+
+# Firebase placeholders (not implemented in this phase)
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_PRIVATE_KEY=
+FIREBASE_STORAGE_BUCKET=
