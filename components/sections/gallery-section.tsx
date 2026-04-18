@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { moodGallerySections, photoAssets } from "@/lib/photos";
 import type { Language } from "@/types/language";
@@ -21,11 +22,84 @@ interface GallerySectionProps {
 
 type Photo = (typeof photoAssets)[number];
 
+function GalleryTrack({
+  groupId,
+  photos,
+  language,
+  onOpen,
+}: {
+  groupId: string;
+  photos: Photo[];
+  language: Language;
+  onOpen: (photos: Photo[], index: number) => void;
+}) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    skipSnaps: false,
+    dragFree: false,
+  });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setActiveIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  return (
+    <div className="wi-gallery-carousel">
+      <div ref={emblaRef} className="overflow-hidden">
+        <div className="flex">
+          {photos.map((photo, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <div
+                key={`${groupId}-${photo.id}`}
+                className="min-w-0 shrink-0 basis-[82%] px-1.5 sm:basis-[64%] sm:px-2"
+              >
+                <button
+                  type="button"
+                  onClick={() => onOpen(photos, index)}
+                  className={`wi-gallery-slide relative w-full overflow-hidden shadow-[0_3px_6px_rgba(17,24,39,0.14)] transition-all duration-500 ease-[cubic-bezier(.22,.61,.36,1)] ${
+                    isActive ? "scale-100 opacity-100" : "scale-[0.94] opacity-45"
+                  }`}
+                  aria-label={language === "ko" ? `${index + 1}번 사진 크게 보기` : `Open photo ${index + 1}`}
+                >
+                  <Image
+                    src={`/imgs/${photo.file}`}
+                    alt="웨딩 갤러리 사진"
+                    width={photo.width}
+                    height={photo.height}
+                    className="h-[440px] w-full object-cover sm:h-[520px]"
+                    sizes="(max-width: 768px) 82vw, 64vw"
+                    loading="lazy"
+                  />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function GallerySection({ language, copy }: GallerySectionProps) {
-  const [activeByGroup, setActiveByGroup] = useState<Record<string, number>>({});
   const [lightbox, setLightbox] = useState<{ photos: Photo[]; index: number } | null>(null);
-  const stripRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [lightboxVisible, setLightboxVisible] = useState(false);
   const lightboxTouchStart = useRef<number | null>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const groupedPhotos = useMemo(
     () =>
@@ -41,40 +115,33 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
     [],
   );
 
-  const setActive = (groupId: string, nextIndex: number) => {
-    setActiveByGroup((prev) => ({ ...prev, [groupId]: nextIndex }));
-  };
-
-  const onStripScroll = (groupId: string, photos: Photo[]) => {
-    const strip = stripRefs.current[groupId];
-    if (!strip) return;
-
-    const stripCenter = strip.getBoundingClientRect().left + strip.clientWidth / 2;
-    let nearestIndex = 0;
-    let nearestDistance = Number.POSITIVE_INFINITY;
-
-    const nodes = Array.from(strip.querySelectorAll<HTMLElement>("[data-slide-index]"));
-    for (const node of nodes) {
-      const index = Number(node.dataset.slideIndex ?? 0);
-      const rect = node.getBoundingClientRect();
-      const center = rect.left + rect.width / 2;
-      const distance = Math.abs(center - stripCenter);
-      if (distance < nearestDistance) {
-        nearestDistance = distance;
-        nearestIndex = index;
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
       }
-    }
-
-    if (nearestIndex >= 0 && nearestIndex < photos.length) {
-      setActive(groupId, nearestIndex);
-    }
-  };
+    };
+  }, []);
 
   const openLightbox = (photos: Photo[], index: number) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
     setLightbox({ photos, index });
+    requestAnimationFrame(() => setLightboxVisible(true));
   };
 
-  const closeLightbox = () => setLightbox(null);
+  const closeLightbox = () => {
+    setLightboxVisible(false);
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = setTimeout(() => {
+      setLightbox(null);
+      closeTimerRef.current = null;
+    }, 220);
+  };
 
   const stepLightbox = (delta: number) => {
     if (!lightbox) return;
@@ -101,53 +168,19 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
     <>
       <Reveal className="wi-section wi-section-gallery px-5 py-12 sm:px-8 sm:py-14">
         <section id="gallery" className="wi-gallery space-y-10">
-          {groupedPhotos.map((group) => {
-            const activeIndex = activeByGroup[group.id] ?? 0;
-
-            return (
-              <article key={group.id} className="wi-gallery-group space-y-4">
-                <div
-                  ref={(node) => {
-                    stripRefs.current[group.id] = node;
-                  }}
-                  className="wi-gallery-strip no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[12%] pb-2 scroll-smooth sm:-mx-8 sm:px-[16%]"
-                  onScroll={() => onStripScroll(group.id, group.photos)}
-                >
-                  {group.photos.map((photo, index) => {
-                    const isActive = index === activeIndex;
-                    return (
-                      <button
-                        key={photo.id}
-                        type="button"
-                        data-slide-index={index}
-                        onClick={() => openLightbox(group.photos, index)}
-                        className={`wi-gallery-slide relative shrink-0 snap-center overflow-hidden border border-white/60 bg-white shadow-[0_14px_26px_rgba(17,24,39,0.14)] transition-all duration-500 ease-[cubic-bezier(.22,.61,.36,1)] ${
-                          isActive ? "w-[76%] scale-100 opacity-100" : "w-[70%] scale-[0.94] opacity-45"
-                        }`}
-                        aria-label={language === "ko" ? `${index + 1}번 사진 크게 보기` : `Open photo ${index + 1}`}
-                      >
-                        <Image
-                          src={`/imgs/${photo.file}`}
-                          alt="웨딩 갤러리 사진"
-                          width={photo.width}
-                          height={photo.height}
-                          className="h-[440px] w-full object-cover sm:h-[520px]"
-                          sizes="(max-width: 768px) 76vw, 52vw"
-                          loading="lazy"
-                        />
-                      </button>
-                    );
-                  })}
-                </div>
-              </article>
-            );
-          })}
+          {groupedPhotos.map((group) => (
+            <article key={group.id} className="wi-gallery-group space-y-4">
+              <GalleryTrack groupId={group.id} photos={group.photos} language={language} onOpen={openLightbox} />
+            </article>
+          ))}
         </section>
       </Reveal>
 
       {lightbox ? (
         <div
-          className="wi-gallery-lightbox fixed inset-0 z-50 bg-black/86 backdrop-blur-[2px] transition-opacity duration-300"
+          className={`wi-gallery-lightbox fixed inset-0 z-50 backdrop-blur-[2px] transition-opacity duration-200 ${
+            lightboxVisible ? "bg-black/86 opacity-100" : "bg-black/86 opacity-0"
+          }`}
           role="dialog"
           aria-modal="true"
           onClick={closeLightbox}
@@ -155,8 +188,9 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
           onTouchEnd={(event) => onLightboxTouchEnd(event.changedTouches[0]?.clientX ?? 0)}
         >
           <div
-            className="wi-gallery-lightbox-inner relative mx-auto flex h-full max-w-[980px] items-center justify-center px-4 py-10"
-            onClick={(event) => event.stopPropagation()}
+            className={`wi-gallery-lightbox-inner relative mx-auto flex h-full max-w-[980px] items-center justify-center px-4 py-10 transition-all duration-200 ${
+              lightboxVisible ? "translate-y-0 opacity-100" : "translate-y-1.5 opacity-0"
+            }`}
           >
             <Image
               key={lightbox.photos[lightbox.index].id}
@@ -164,15 +198,19 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
               alt="확대된 웨딩 사진"
               width={lightbox.photos[lightbox.index].width}
               height={lightbox.photos[lightbox.index].height}
-              className="max-h-[84vh] w-auto max-w-full animate-[wiLightboxZoomIn_260ms_ease]"
+              className={`max-h-[84vh] w-auto max-w-full transition-all duration-200 ${
+                lightboxVisible ? "scale-100 opacity-100" : "scale-[0.985] opacity-0"
+              }`}
               sizes="90vw"
               priority
+              onClick={(event) => event.stopPropagation()}
             />
 
             <button
               type="button"
               onClick={closeLightbox}
-              className="wi-gallery-lightbox-close absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-xl leading-none text-[#4f5867] shadow-[0_8px_16px_rgba(0,0,0,0.2)]"
+              onMouseDown={(event) => event.stopPropagation()}
+              className="wi-gallery-lightbox-close absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center text-2xl leading-none text-white transition hover:opacity-80"
               aria-label={copy.close}
             >
               ×
@@ -183,4 +221,3 @@ export function GallerySection({ language, copy }: GallerySectionProps) {
     </>
   );
 }
-

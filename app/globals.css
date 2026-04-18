@@ -119,12 +119,12 @@ img {
 }
 
 .wi-btn-primary {
-  border: 1px solid #4f2f24;
-  background: linear-gradient(180deg, #5a372a 0%, #4f2f24 100%);
-  color: #fff;
+  border: 1px solid #4f2f24 !important;
+  background: linear-gradient(180deg, #5a372a 0%, #4f2f24 100%) !important;
+  color: #fff !important;
   box-shadow:
     0 10px 22px rgba(79, 47, 36, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
@@ -132,31 +132,31 @@ img {
 }
 
 .wi-btn-primary:hover {
-  filter: brightness(1.03);
+  filter: brightness(1.03) !important;
   box-shadow:
     0 12px 26px rgba(79, 47, 36, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
 }
 
 .wi-btn-primary:active {
   transform: translateY(1px);
   box-shadow:
     0 6px 14px rgba(79, 47, 36, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
 .wi-btn-primary:disabled {
   filter: grayscale(0.1);
   opacity: 0.55;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .wi-btn-secondary {
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--line) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
   box-shadow:
     0 6px 16px rgba(23, 31, 43, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
@@ -164,10 +164,10 @@ img {
 }
 
 .wi-btn-secondary:hover {
-  background: #fff;
+  background: #fff !important;
   box-shadow:
     0 8px 18px rgba(23, 31, 43, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
 }
 
 .wi-btn-secondary:active {

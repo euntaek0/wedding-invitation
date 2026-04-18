@@ -40,22 +40,21 @@ export function HeroSection({ language, copy }: HeroSectionProps) {
           <p className="wi-hero-date-weekday text-sm tracking-[0.24em] text-[#7f7476]">{weekday}</p>
         </div>
 
-        <div className="wi-hero-main-photo relative my-7 aspect-[1/1.06] overflow-hidden border border-[var(--line)] bg-[var(--surface-soft)]">
+        <div className="wi-hero-main-photo relative my-7 aspect-[1/1.06] overflow-hidden bg-transparent">
           <Image
             src="/imgs/YJ_00859.jpg"
             alt="신랑 신부 웨딩 사진"
             width={3000}
             height={4000}
             priority
-            className="h-full w-full object-cover object-[50%_24%]"
+            className="h-full w-full scale-[1.012] object-cover object-[50%_24%]"
             sizes="(max-width: 768px) 100vw, 460px"
           />
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
             style={{
-              boxShadow:
-                "inset 4px 4px 10px rgba(0,0,0,0.12), inset -2px -2px 4px rgba(0,0,0,0.06), inset 1px 1px 0 rgba(255,255,255,0.12)",
+              boxShadow: "inset 6px 6px 8px rgba(0,0,0,0.12), inset -1px -1px 3px rgba(0,0,0,0.08)",
             }}
           />
         </div>
