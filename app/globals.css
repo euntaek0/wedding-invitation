@@ -27,9 +27,18 @@ body {
 }
 
 body {
+  width: 100%;
   font-family: 'Eulyoo1945-Regular', 'Apple SD Gothic Neo', 'Noto Serif KR',
     serif;
   line-height: 1.68;
+}
+
+@media (min-width: 640px) {
+  body {
+    max-width: 640px;
+    margin-inline: auto;
+    box-shadow: var(--shadow-soft);
+  }
 }
 
 a {
