@@ -109,6 +109,23 @@ export function GalleryPageClient({ language }: { language: "ko" | "en" }) {
   }, []);
   const photos = useMemo(() => columns.flat(), [columns]);
   const photoIndexById = useMemo(() => new Map(photos.map((photo, index) => [photo.id, index])), [photos]);
+  const appearOrderById = useMemo(() => {
+    const order = new Map<string, number>();
+    const maxRows = Math.max(...columns.map((col) => col.length), 0);
+    let seq = 0;
+
+    // Top-to-bottom visual order: row 0 (col 1->3), row 1 (col 1->3), ...
+    for (let row = 0; row < maxRows; row += 1) {
+      for (let col = 0; col < columns.length; col += 1) {
+        const photo = columns[col]?.[row];
+        if (!photo) continue;
+        order.set(photo.id, seq);
+        seq += 1;
+      }
+    }
+
+    return order;
+  }, [columns]);
 
   const [lightbox, setLightbox] = useState<number | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -148,17 +165,20 @@ export function GalleryPageClient({ language }: { language: "ko" | "en" }) {
                 <button
                   type="button"
                   key={photo.id}
-                  className="block w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]"
+                  className="wi-gallery-tile-enter block w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]"
+                  style={{
+                    animationDelay: `${(appearOrderById.get(photo.id) ?? 0) * 130}ms`,
+                  }}
                   onClick={() => setLightbox(photoIndexById.get(photo.id) ?? 0)}
                 >
-                  <Image
+                  <img
                     src={getPhotoThumbSrc(photo.file)}
                     alt="웨딩 아카이브 사진"
                     width={photo.width}
                     height={photo.height}
-                    className="h-auto w-full object-cover"
-                    sizes="(max-width: 640px) 31vw, 31vw"
+                    className="h-auto w-full bg-[var(--surface-soft)] object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </button>
               ))}

@@ -56,6 +56,16 @@ export default function RootLayout({
       <head>
         <link
           rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@noonnu/eulyoo1945-regular@0.1.0/index.min.css"
         />
       </head>

@@ -11,6 +11,14 @@ interface InvitationSectionProps {
 }
 
 export function InvitationSection({ copy }: InvitationSectionProps) {
+  const withLineBreaks = (text: string, keyPrefix: string) =>
+    text.split("\n").map((part, index, arr) => (
+      <span key={`${keyPrefix}-${index}`}>
+        {part}
+        {index < arr.length - 1 ? <br /> : null}
+      </span>
+    ));
+
   const renderLine = (line: string, idx: number) => {
     const segments = line.split(/(사랑|축복)/g);
 
@@ -19,10 +27,10 @@ export function InvitationSection({ copy }: InvitationSectionProps) {
         {segments.map((segment, segmentIdx) =>
           segment === "사랑" || segment === "축복" ? (
             <span key={`${segment}-${segmentIdx}`} className="text-[var(--accent-strong)]">
-              {segment}
+              {withLineBreaks(segment, `${idx}-${segmentIdx}-${segment}`)}
             </span>
           ) : (
-            <span key={`${segment}-${segmentIdx}`}>{segment}</span>
+            <span key={`${segment}-${segmentIdx}`}>{withLineBreaks(segment, `${idx}-${segmentIdx}`)}</span>
           ),
         )}
       </p>

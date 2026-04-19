@@ -68,7 +68,7 @@ export function WeddingInfoSection({ language, copy }: WeddingInfoSectionProps) 
             <p className="wi-information-venue-name text-base leading-relaxed text-[var(--foreground)]">
               {weddingContent.venue.name}
             </p>
-            <p className="wi-information-venue-address mx-auto max-w-[280px] text-sm leading-relaxed text-[#8e8284]">
+            <p className="wi-information-venue-address mx-auto max-w-[280px] whitespace-pre-line text-sm leading-relaxed text-[#8e8284]">
               {weddingContent.venue.address}
             </p>
             <div className="wi-information-divider mt-12 mx-auto h-px w-[20px] bg-[var(--line)]" />

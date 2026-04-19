@@ -25,6 +25,7 @@ interface VenueSectionProps {
 
 export function VenueSection({ copy, navCopy }: VenueSectionProps) {
   const [isCopied, setIsCopied] = useState(false);
+  const venueAddressLines = siteConfig.venueAddress.split(/\n/g);
 
   const copyAddress = async () => {
     try {
@@ -62,8 +63,13 @@ export function VenueSection({ copy, navCopy }: VenueSectionProps) {
             <p className="wi-venue-address-label text-base text-[var(--muted)]">
               <span className="font-medium text-[var(--foreground)]">{copy.addressLabel}</span>
             </p>
-            <p className="wi-venue-address-detail wi-information-venue-address mr-auto max-w-[240px] text-left text-xs leading-relaxed text-[#8e8284]">
-              {siteConfig.venueAddress}
+            <p className="wi-venue-address-detail wi-information-venue-address mx-auto max-w-[280px] text-sm leading-relaxed text-[#8e8284]">
+              {venueAddressLines.map((line, idx) => (
+                <span key={`${line}-${idx}`}>
+                  {line}
+                  {idx < venueAddressLines.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
 
             <div className="wi-venue-actions grid grid-cols-3 gap-2">
