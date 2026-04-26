@@ -19,7 +19,6 @@ type UploadCopy = {
   uploaderName: string;
   fileInput: string;
   helper: string;
-  limitNote: string;
   privacyNotice: string;
   submit: string;
   uploading: string;
@@ -145,13 +144,6 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
   const hasUploadable = useMemo(() => {
     return items.some((item) => item.status === "ready" || item.status === "error");
   }, [items]);
-
-  const limitLabel = useMemo(() => {
-    return fillTemplate(copy.limitNote, {
-      count: uploadConstraints.maxFiles,
-      sizeMb: uploadConstraints.maxFileSizeMb,
-    });
-  }, [copy.limitNote]);
 
   const formatSelectionError = (code: UploadIssueCode, fileName?: string) => {
     switch (code) {
@@ -415,7 +407,6 @@ export function GuestUploadSection({ copy }: GuestUploadSectionProps) {
             <p className="wi-upload-helper text-sm text-[var(--foreground)]">
               {copy.helper || allowedUploadMimeTypeLabel}
             </p>
-            <p className="text-xs text-[var(--muted)]">{limitLabel}</p>
             <p className="text-xs text-[var(--muted)]">{copy.privacyNotice}</p>
           </div>
 

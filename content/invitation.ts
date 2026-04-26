@@ -146,8 +146,9 @@ export const invitationCopy = {
     account: {
       heading: "마음 전하는 곳",
       intro: "참석이 어려우신 분들을 위해 \n계좌번호를 안내해 드립니다.\n너그러운 마음으로 양해 부탁드립니다.",
-      groomSide: "신랑측",
-      brideSide: "신부측",
+      groomParents: "신랑 부모님",
+      brideParents: "신부 부모님",
+      coupleSide: "신랑 신부측",
       openModal: "마음 전하기",
       closeModal: "닫기",
       copy: "복사",
@@ -279,8 +280,9 @@ export const invitationCopy = {
     account: {
       heading: "Account",
       intro: "For guests who cannot attend in person, we share our account details below.",
-      groomSide: "Groom Side",
-      brideSide: "Bride Side",
+      groomParents: "Groom's Parents",
+      brideParents: "Bride's Parents",
+      coupleSide: "Couple",
       openModal: "Send Gift",
       closeModal: "Close",
       copy: "Copy",

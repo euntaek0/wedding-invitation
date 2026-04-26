@@ -9,8 +9,9 @@ import type { TouchEvent } from "react";
 type AccountCopy = {
   heading: string;
   intro: string;
-  groomSide: string;
-  brideSide: string;
+  groomParents: string;
+  brideParents: string;
+  coupleSide: string;
   openModal: string;
   closeModal: string;
   copy: string;
@@ -29,7 +30,7 @@ type AccountItem = {
   number: string;
 };
 
-const groomAccounts: AccountItem[] = [
+const groomParentAccounts: AccountItem[] = [
   {
     id: "groom-gujihong",
     owner: "구지홍",
@@ -38,13 +39,16 @@ const groomAccounts: AccountItem[] = [
   },
 ];
 
-const brideAccounts: AccountItem[] = [
+const brideParentAccounts: AccountItem[] = [
   {
     id: "bride-kimgwangil",
     owner: "김광일",
     bank: "농협",
     number: "356 0695 6249 63",
   },
+];
+
+const coupleAccounts: AccountItem[] = [
   {
     id: "bride-kimyeeun",
     owner: "김예은",
@@ -123,7 +127,7 @@ export function AccountSection({ language, copy }: AccountSectionProps) {
 
   const renderRows = (items: AccountItem[]) =>
     items.map((item) => (
-      <li key={item.id} className="wi-account-row py-2.5">
+      <li key={item.id} className="wi-account-row pt-0 pb-2.5">
         <div className="wi-account-row-head mx-1 mb-1 flex items-center justify-between gap-3">
           <p className="wi-account-bank text-xs text-[#7d6e64]">{item.bank}</p>
           <p className="wi-account-owner text-xs text-[#9a8b81]">{item.owner}</p>
@@ -244,16 +248,23 @@ export function AccountSection({ language, copy }: AccountSectionProps) {
                 <div className="wi-account-sheet-cards space-y-3 overflow-y-auto pb-1 max-h-[70vh]">
                   <article className="wi-account-card px-1 py-1">
                     <h4 className="wi-account-card-title text-center text-[0.9rem] text-[var(--foreground)]">
-                      {copy.groomSide}
+                      {copy.groomParents}
                     </h4>
-                    <ul className="wi-account-list mt-2">{renderRows(groomAccounts)}</ul>
+                    <ul className="wi-account-list mt-1">{renderRows(groomParentAccounts)}</ul>
                   </article>
 
                   <article className="wi-account-card px-1 py-1">
                     <h4 className="wi-account-card-title text-center text-[0.9rem] text-[var(--foreground)]">
-                      {copy.brideSide}
+                      {copy.brideParents}
                     </h4>
-                    <ul className="wi-account-list mt-2">{renderRows(brideAccounts)}</ul>
+                    <ul className="wi-account-list mt-1">{renderRows(brideParentAccounts)}</ul>
+                  </article>
+
+                  <article className="wi-account-card px-1 py-1">
+                    <h4 className="wi-account-card-title text-center text-[0.9rem] text-[var(--foreground)]">
+                      {copy.coupleSide}
+                    </h4>
+                    <ul className="wi-account-list mt-1">{renderRows(coupleAccounts)}</ul>
                   </article>
                 </div>
               </div>
