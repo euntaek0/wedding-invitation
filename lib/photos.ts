@@ -34,6 +34,7 @@ export const photoAssets: PhotoAsset[] = [
   { id: 'YJ_00576', file: 'YJ_00576.webp', width: 4672, height: 7008 },
   { id: 'YJ_00679', file: 'YJ_00679.webp', width: 7008, height: 4672 },
   { id: 'YJ_00859', file: 'YJ_00859.webp', width: 4672, height: 7008 },
+  { id: 'YJ_01000', file: 'YJ_01000.webp', width: 4672, height: 7008 },
   { id: 'YJ_01014', file: 'YJ_01014.webp', width: 4672, height: 7008 },
   { id: 'YJ_01156', file: 'YJ_01156.webp', width: 4672, height: 7008 },
   { id: 'YJ_01344', file: 'YJ_01344.webp', width: 4626, height: 6938 },

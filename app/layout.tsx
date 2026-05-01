@@ -31,9 +31,9 @@ export const metadata: Metadata = {
       '소중한 순간에 함께하시어 축복해주시면 감사하겠습니다. 2026년 6월 6일 낮 12시.',
     images: [
       {
-        url: '/og-hand.png',
-        width: 2837,
-        height: 3127,
+        url: '/imgs/YJ_00859.webp',
+        width: 4672,
+        height: 7008,
         alt: '구은성 김예은 웨딩 사진',
       },
     ],
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '구은성 ♥ 김예은 결혼식 초대장',
     description: '2026년 6월 6일 토요일 낮 12시 · 꽃재교회 2층 대예배실',
-    images: ['/og-hand.png'],
+    images: ['/imgs/YJ_00859.webp'],
   },
 }
 
