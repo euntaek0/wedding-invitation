@@ -32,8 +32,9 @@ export function getCountdownMessage(language: Language, now = new Date()) {
 }
 
 export function buildJune2026Matrix() {
-  const firstDate = new Date('2026-06-01T00:00:00+09:00')
-  const firstDay = firstDate.getDay() // 0: Sun
+  // Hard-coded to avoid client locale/timezone offsets.
+  // 2026-06-01 is Monday => 1 (Sun=0)
+  const firstDay = 1
   const totalDays = 30
 
   const cells: Array<number | null> = []

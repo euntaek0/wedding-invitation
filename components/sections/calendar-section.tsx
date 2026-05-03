@@ -2,7 +2,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { buildJune2026Matrix } from "@/lib/date";
-import { weddingContent } from "@/content/invitation";
 import type { Language } from "@/types/language";
 
 type CalendarCopy = {
@@ -45,26 +44,17 @@ function two(n: number) {
   return String(n).padStart(2, "0");
 }
 
-function ordinal(day: number) {
-  const mod10 = day % 10;
-  const mod100 = day % 100;
-  if (mod10 === 1 && mod100 !== 11) return `${day}st`;
-  if (mod10 === 2 && mod100 !== 12) return `${day}nd`;
-  if (mod10 === 3 && mod100 !== 13) return `${day}rd`;
-  return `${day}th`;
-}
-
 export function CalendarSection({ language }: CalendarSectionProps) {
   const cells = useMemo(() => buildJune2026Matrix(), []);
   const [now, setNow] = useState(() => new Date());
-  const weddingDate = useMemo(() => new Date(weddingContent.date.iso), []);
+  const weddingTimestamp = Date.parse("2026-06-06T12:00:00+09:00");
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
 
-  const totalMs = weddingDate.getTime() - now.getTime();
+  const totalMs = weddingTimestamp - now.getTime();
   const safeMs = Math.max(totalMs, 0);
   const totalSeconds = Math.floor(safeMs / 1000);
 
@@ -74,7 +64,7 @@ export function CalendarSection({ language }: CalendarSectionProps) {
   const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
   const seconds = totalSeconds % 60;
 
-  const topDateLabel = `${weddingDate.getFullYear()} June ${ordinal(weddingDate.getDate())}`;
+  const topDateLabel = "2026 June 6th";
   const topTimeLabel = language === "ko" ? "토요일 낮 12시" : "Saturday 12:00 PM";
 
   const ddayCountKo = `${dDays}일`;

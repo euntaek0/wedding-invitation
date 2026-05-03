@@ -16,10 +16,9 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ language, copy }: HeroSectionProps) {
-  const eventDate = new Date(weddingContent.date.iso);
-  const yy = String(eventDate.getFullYear()).slice(2);
-  const mm = String(eventDate.getMonth() + 1).padStart(2, "0");
-  const dd = String(eventDate.getDate()).padStart(2, "0");
+  const yy = "26";
+  const mm = "06";
+  const dd = "06";
   const weekday = language === "ko" ? "SATURDAY" : "SATURDAY";
   const leftName = language === "ko" ? "구은성" : "Koo Eunseong";
   const rightName = language === "ko" ? "김예은" : "Kim Yeeun";
